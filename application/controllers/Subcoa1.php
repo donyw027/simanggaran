@@ -45,11 +45,13 @@ class Subcoa1 extends CI_Controller
     }
 
     public function add()
-    {
-        $this->_validasi('add');
+    {   
+        $this->_validasi('add');    
 
         if ($this->form_validation->run() == false) {
             $data['title'] = "Tambah Sub Coa 1";
+            $data['coa'] = $this->admin->getcoa();
+
             $this->template->load('templates/dashboard', 'subcoa1/add', $data);
         } else {
             $input = $this->input->post(null, true);
@@ -112,6 +114,8 @@ class Subcoa1 extends CI_Controller
         }
         redirect('subcoa1');
     }
+
+    
 
     // public function toggle($getId)
     // {

@@ -4,16 +4,16 @@
         <div class="row">
             <div class="col">
                 <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
-                    Data Coa
+                    Data Realisasi Anggaran
                 </h4>
             </div>
             <div class="col-auto">
-                <a href="<?= base_url('subcoa1/add') ?>" class="btn btn-sm btn-primary btn-icon-split">
+                <a href="<?= base_url('realisasianggaran/add') ?>" class="btn btn-sm btn-primary btn-icon-split">
                     <span class="icon">
                         <i class="fa fa-user-plus"></i>
                     </span>
                     <span class="text">
-                        Tambah Sub Coa 2
+                        Tambah Realisasi Anggaran
                     </span>
                 </a>
             </div>
@@ -33,8 +33,8 @@
                     <th>Sisa Saldo</th>
                     <th>Total Saldo</th>
                     <th>No Coa</th>
-                    
-
+                    <th>No Sub Coa 1</th>
+                    <th>No Sub Coa 2</th>
                     <!-- <th>Aksi</th> -->
                 </tr>
             </thead>
@@ -55,18 +55,17 @@
                             <td>Rp. <?= number_format($realisasii['SISA_SALDO'],0,',','.'); ?></td>
                             <td>Rp. <?= number_format($realisasii['TOTAL_SALDO'],0,',','.'); ?></td>
                             <td><?= $realisasii['NO_COA']; ?></td>
-                            
-
-                            <!-- <td>
-                                
-                                <a href="<?= base_url('subcoa2/edit/') . $realisasii['id'] ?>" class="btn btn-circle btn-sm btn-warning"><i class="fa fa-fw fa-edit"></i></a>
-                                <a onclick="return confirm('Yakin ingin menghapus data?')" href="<?= base_url('subcoa2/delete/') . $realisasii['id'] ?>" class="btn btn-circle btn-sm btn-danger"><i class="fa fa-fw fa-trash"></i></a>
-                            </td> -->
+                            <td><?= $realisasii['NO_SUB_COA_1']; ?></td>
+                            <td><?= $realisasii['NO_SUB_COA_2']; ?></td>
+                           
+                             <!-- </td>
+                                 <a onclick="return confirm('Yakin ingin menghapus data?')" href="<?= base_url('realisasianggaran/delete/') . $realisasii['id'] ?>" class="btn btn-circle btn-sm btn-danger"><i class="fa fa-fw fa-trash"></i></a>
+                            </td>   -->
                         </tr>
                     <?php endforeach;
                     else : ?>
                     <tr>
-                        <td colspan="8" class="text-center">Silahkan tambahkan Coa baru</td>
+                        <td colspan="8" class="text-center">Silahkan tambahkan Realisasi Baru</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

@@ -23,26 +23,44 @@
             <div class="card-body pb-2">
                 <?= $this->session->flashdata('pesan'); ?>
                 <?= form_open(); ?>
+
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="NO_SUB_COA_2">NO_SUB_COA_2</label>
+                    <label class="col-md-4 text-md-right" for="NO_COA">INDUK_COA</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('NO_SUB_COA_2'); ?>" type="text" id="NO_SUB_COA_2" name="NO_SUB_COA_2" class="form-control" placeholder="NO_SUB_COA_2">
-                        <?= form_error('NO_SUB_COA_2', '<span class="text-danger small">', '</span>'); ?>
+                    <select class="form-control" name="NO_COA" Change="NO_COA" id="NO_COA">
+                          <option>--Pilih Induk Coa--</option>
+                          <?php
+                          foreach ($coa as $row) { ?>
+
+                            <option value="<?= $row->INDUK_COA ?>"><?= $row->INDUK_COA?> : <?= $row->NAMA_PERKIRAAN ?> </option>
+                          <?php } ?>
+                        </select>
                     </div>
                 </div>
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="NO_SUB_COA_1">NO_SUB_COA_1</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('NO_SUB_COA_1'); ?>" type="text" id="NO_SUB_COA_1" name="NO_SUB_COA_1" class="form-control" placeholder="NO_SUB_COA_1">
-                        <?= form_error('NO_SUB_COA_1', '<span class="text-danger small">', '</span>'); ?>
+                    <select class="form-control" name="NO_SUB_COA_1">
+                          <option>--Pilih Sub Coa 1--</option>
+                          <?php
+                          foreach ($subcoa1 as $row) { ?>
+
+                            <option value="<?= $row->NO_SUB_COA_1 ?>"><?= $row->NO_SUB_COA_1?> : <?= $row->NAMA_PERKIRAAN ?> </option>
+                          <?php } ?>
+                        </select>
                     </div>
                 </div>
-
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="INDUK_COA">INDUK_COA</label>
+                    <label class="col-md-4 text-md-right" for="NO_SUB_COA_2">NO_SUB_COA_2</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('INDUK_COA'); ?>" type="text" id="INDUK_COA" name="INDUK_COA" class="form-control" placeholder="INDUK_COA">
-                        <?= form_error('INDUK_COA', '<span class="text-danger small">', '</span>'); ?>
+                    <select class="form-control" name="NO_SUB_COA_2">
+                          <option>--Pilih Sub Coa 2--</option>
+                          <?php
+                          foreach ($subcoa2 as $row) { ?>
+
+                            <option value="<?= $row->NO_SUB_COA_2 ?>"><?= $row->NO_SUB_COA_2?> : <?= $row->NAMA_PERKIRAAN ?> </option>
+                          <?php } ?>
+                        </select>
                     </div>
                 </div>
 
@@ -53,20 +71,62 @@
                         <?= form_error('NAMA_PERKIRAAN', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
-
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="TIPE">TIPE</label>
+                    <label class="col-md-4 text-md-right" for="BAGIAN">BAGIAN</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('TIPE'); ?>" type="text" id="TIPE" name="TIPE" class="form-control" placeholder="TIPE">
-                        <?= form_error('TIPE', '<span class="text-danger small">', '</span>'); ?>
+                    <?php 
+                        $role = $this->session->userdata('login_session')['role'];
+                        ?>
+                        <input value="<?= $role ?>" type="text" id="BAGIAN" name="BAGIAN" class="form-control" placeholder="BAGIAN" readonly>
+                        <?= form_error('BAGIAN', '<span class="text-danger small">', '</span>'); ?>
+                    </div>
+                </div>    
+                <div class="row form-group">
+                    <label class="col-md-4 text-md-right" for="NAMA_REALISASI">NAMA_REALISASI</label>
+                    <div class="col-md-6">
+                        <input value="<?= set_value('NAMA_REALISASI'); ?>" type="text" id="NAMA_REALISASI" name="NAMA_REALISASI" class="form-control" placeholder="NAMA_REALISASI">
+                        <?= form_error('NAMA_REALISASI', '<span class="text-danger small">', '</span>'); ?>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-md-4 text-md-right" for="SALDO_AWAL">SALDO_AWAL</label>
+                    <div class="col-md-6">
+                        <input value="<?= set_value('SALDO_AWAL'); ?>" type="text" id="SALDO_AWAL" name="SALDO_AWAL" class="form-control" placeholder="SALDO_AWAL">
+                        <?= form_error('SALDO_AWAL', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
 
                 <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="BAGIAN">BAGIAN</label>
+                    <label class="col-md-4 text-md-right" for="BIAYA_REALISASI">BIAYA_REALISASI</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('BAGIAN'); ?>" type="text" id="BAGIAN" name="BAGIAN" class="form-control" placeholder="BAGIAN">
-                        <?= form_error('BAGIAN', '<span class="text-danger small">', '</span>'); ?>
+                        <input value="<?= set_value('BIAYA_REALISASI'); ?>" type="text" id="BIAYA_REALISASI" name="BIAYA_REALISASI" class="form-control" placeholder="BIAYA_REALISASI">
+                        <?= form_error('BIAYA_REALISASI', '<span class="text-danger small">', '</span>'); ?>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-md-4 text-md-right" for="SISA_SALDO">SISA_SALDO</label>
+                    <div class="col-md-6">
+                        <input value="<?= set_value('SISA_SALDO'); ?>" type="text" id="SISA_SALDO" name="SISA_SALDO" class="form-control" placeholder="SISA_SALDO">
+                        <?= form_error('SISA_SALDO', '<span class="text-danger small">', '</span>'); ?>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-md-4 text-md-right" for="TOTAL_SALDO">TOTAL_SALDO</label>
+                    <div class="col-md-6">
+                        <input value="<?= set_value('TOTAL_SALDO'); ?>" type="text" id="TOTAL_SALDO" name="TOTAL_SALDO" class="form-control" placeholder="TOTAL_SALDO">
+                        <?= form_error('TOTAL_SALDO', '<span class="text-danger small">', '</span>'); ?>
+                    </div>
+                </div>
+
+               
+                <div class="row form-group">
+                    <label class="col-md-4 text-md-right" for="TGL_INPUT">TGL_INPUT</label>
+                    <div class="col-md-6">
+                        <?php $date = date('d-M-y | h:m'); ?>
+                        <input value="<?= $date; ?>" type="text" id="TGL_INPUT" name="TGL_INPUT" class="form-control" placeholder="TGL_INPUT">
+                        <?= form_error('TGL_INPUT', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
                 

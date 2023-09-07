@@ -1,3 +1,4 @@
+
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card shadow-sm mb-4 border-bottom-primary">
@@ -23,6 +24,21 @@
             <div class="card-body pb-2">
                 <?= $this->session->flashdata('pesan'); ?>
                 <?= form_open(); ?>
+
+                <div class="row form-group">
+                    <label class="col-md-4 text-md-right" for="INDUK_COA">INDUK_COA</label>
+                    <div class="col-md-6">
+                    <select class="form-control" name="INDUK_COA">
+                          <option>--Pilih Induk Coa--</option>
+                          <?php
+                          foreach ($coa as $row) { ?>
+
+                            <option value="<?= $row->INDUK_COA ?>"><?= $row->INDUK_COA?> : <?= $row->NAMA_PERKIRAAN ?> </option>
+                          <?php } ?>
+                        </select>
+                        <?= form_error('INDUK_COA', '<span class="text-danger small">', '</span>'); ?>
+                    </div>
+                </div>
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="NO_SUB_COA_1">NO_SUB_COA_1</label>
                     <div class="col-md-6">
@@ -31,14 +47,9 @@
                     </div>
                 </div>
 
-                <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="INDUK_COA">INDUK_COA</label>
-                    <div class="col-md-6">
-                        <input value="<?= set_value('INDUK_COA'); ?>" type="text" id="INDUK_COA" name="INDUK_COA" class="form-control" placeholder="INDUK_COA">
-                        <?= form_error('INDUK_COA', '<span class="text-danger small">', '</span>'); ?>
-                    </div>
-                </div>
+               
 
+                
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="NAMA_PERKIRAAN">NAMA_PERKIRAAN</label>
                     <div class="col-md-6">

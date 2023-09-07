@@ -59,57 +59,9 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <?php if (is_admin()) : ?>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Data Master
-            </div>
-
-            <!-- Nav Item - Dashboard -->
-            <!-- <li class="nav-item">
-                <a class="nav-link pb-0" href="<?= base_url('inputsaldo'); ?>">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Input Saldo</span>
-                </a>
-            </li> -->
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseMaster" aria-expanded="true" aria-controls="collapseMaster">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Input Coa</span>
-                </a>
-                <div id="collapseMaster" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-light py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Master Barang:</h6>
-                        <a class="collapse-item" href="<?= base_url('indukcoa'); ?>">Induk Coa</a>
-                        <a class="collapse-item" href="<?= base_url('subcoa1'); ?>">Sub Coa 1</a>
-                        <a class="collapse-item" href="<?= base_url('subcoa2'); ?>">Sub Coa 2</a>
-                    </div>
-                </div>
-            </li>
-            <hr class="sidebar-divider">
-
             
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Settings
-                </div>
-
-                <!-- Nav Item -->
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('user'); ?>">
-                        <i class="fas fa-fw fa-user-plus"></i>
-                        <span>User Management</span>
-                    </a>
-                </li>
-            <?php endif; ?>
-
-            <?php if (!is_admin()) : ?>
+           
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -156,8 +108,8 @@
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Realisasi Anggaran</span>
                 </a>
-            </li>
-            <li class="nav-item">
+            </li><br>
+            <!-- <li class="nav-item">
                 <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseMaster1" aria-expanded="true" aria-controls="collapseMaster">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Tambah Anggaran</span>
@@ -169,7 +121,7 @@
                         <a class="collapse-item" href="<?= base_url('jenis'); ?>">Anggaran 2</a>
                     </div>
                 </div>
-            </li>
+            </li> -->
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -192,10 +144,29 @@
                     <span>Hasil Realisasi</span>
                 </a>
             </li>
+
+            <?php if (is_admin()) : ?>
+            
+            <hr class="sidebar-divider">
+
+            
+
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Settings
+                </div>
+
+                <!-- Nav Item -->
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('user'); ?>">
+                        <i class="fas fa-fw fa-user-plus"></i>
+                        <span>User Management</span>
+                    </a>
+                </li>
+            <?php endif; ?>
       
            
                 
-            <?php endif; ?>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -402,6 +373,30 @@
             table.buttons().container().appendTo('#dataTable_wrapper .col-md-5:eq(0)');
         });
     </script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+$('.NO_COA').change(function(){
+var NO_COA=$(this).val();
+$.ajax({
+url : "<?php echo base_url('realisasianggaran/get_autofill');?>",
+method : "POST",
+data : {NO_COA: NO_COA},
+async : false,
+dataType : 'json',
+success: function(data){
+var html = '';
+var i;
+     for(i=0; i<data.length; i++){
+     html += data[i].NAMA_PERKIRAAN;
+     html += data[i].SISA_AWAL;
+    }
+     $('.NAMA_PERKIRAAN').html(html);
+     $('.SISA_AWAL').html(html);
+
+  }
+});
+});
     
 
     <?php if ($this->uri->segment(1) == 'dashboard') : ?>

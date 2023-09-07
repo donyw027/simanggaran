@@ -40,6 +40,10 @@
                             <input value="barang_masuk" type="radio" id="barang_masuk" name="transaksi" class="custom-control-input">
                             <label class="custom-control-label" for="barang_masuk">Yayasan</label>
                         </div>
+                        <div class="custom-control custom-radio">
+                            <input value="barang_masuk" type="radio" id="barang_masuk" name="transaksi" class="custom-control-input">
+                            <label class="custom-control-label" for="barang_masuk">Keseluruhan</label>
+                        </div>
                         <?= form_error('transaksi', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>

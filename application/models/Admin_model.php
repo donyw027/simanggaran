@@ -38,38 +38,13 @@ class Admin_model extends CI_Model
          */
         $this->db->where('id_user !=', $id);
         return $this->db->get('user')->result_array();
-    }
-
-    
-
-    public function getMax($table, $field, $kode = null)
-    {
-        $this->db->select_max($field);
-        if ($kode != null) {
-            $this->db->like($field, $kode, 'after');
-        }
-        return $this->db->get($table)->row_array()[$field];
-    }
+    }  
 
     public function count($table)
     {
         return $this->db->count_all($table);
     }
 
-    public function sum($table, $field)
-    {
-        $this->db->select_sum($field);
-        return $this->db->get($table)->row_array()[$field];
-    }
-
-    public function min($table, $field, $min)
-    {
-        $field = $field . ' <=';
-        $this->db->where($field, $min);
-        return $this->db->get($table)->result_array();
-    }
-
-    
 
     public function laporan($table, $mulai, $akhir)
     {
@@ -79,9 +54,59 @@ class Admin_model extends CI_Model
         return $this->db->get($table)->result_array();
     }
 
-    public function cekStok($id)
-    {
-        $this->db->join('satuan s', 'b.satuan_id=s.id_satuan');
-        return $this->db->get_where('barang b', ['id_barang' => $id])->row_array();
-    }
+    public function getcoa()
+	{   
+        $role = $this->session->userdata('login_session')['role'];
+
+		if (Is_admin() == true) {
+            return $this->db->get('coa')->result();
+        }else {
+            return $this->db->query("SELECT * FROM coa where BAGIAN='$role'")->result();
+        }
+        
+	}
+
+    public function getsubcoa1()
+	{
+        $role = $this->session->userdata('login_session')['role'];
+
+        if (Is_admin() == true) {
+            return $this->db->get('sub_coa_1')->result();
+
+        }else {
+            return $this->db->query("SELECT * FROM sub_coa_1 where BAGIAN='$role'")->result();
+        }
+
+	}
+
+    public function getsubcoa2()
+	{
+        $role = $this->session->userdata('login_session')['role'];
+
+        if (Is_admin() == true) {
+            return $this->db->get('sub_coa_2')->result();
+        }else {
+            return $this->db->query("SELECT * FROM sub_coa_2 where BAGIAN='$role'")->result();
+        }
+
+		
+	}
+
+    function get_autofill_mod($NO_COA){
+        $role = $this->session->userdata('login_session')['role'];
+
+        $hsl=$this->db->query("SELECT * FROM input_saldo_.$role WHERE NO_COA='$NO_COA'");
+          if($hsl->num_rows()>0){
+          foreach ($hsl->result() as $data) {
+          $hasil=array(
+            'NO_COA' => $data->NO_COA,
+            'NAMA_PERKIRAAN' => $data->NAMA_PERKIRAAN,
+            'SALDO_AWAL' => $data->SALDO_AWAL,
+            );
+          }
+                }
+          return $hasil;
+        }
+
+    
 }

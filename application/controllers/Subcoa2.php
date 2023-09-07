@@ -50,6 +50,9 @@ class Subcoa2 extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['title'] = "Tambah Sub Coa 2";
+            $data['coa'] = $this->admin->getcoa();
+            $data['subcoa1'] = $this->admin->getsubcoa1();
+
             $this->template->load('templates/dashboard', 'subcoa2/add', $data);
         } else {
             $input = $this->input->post(null, true);

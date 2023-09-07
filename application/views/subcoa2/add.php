@@ -23,6 +23,34 @@
             <div class="card-body pb-2">
                 <?= $this->session->flashdata('pesan'); ?>
                 <?= form_open(); ?>
+
+                <div class="row form-group">
+                    <label class="col-md-4 text-md-right" for="INDUK_COA">INDUK_COA</label>
+                    <div class="col-md-6">
+                    <select class="form-control" name="INDUK_COA">
+                          <option>--Pilih Induk Coa--</option>
+                          <?php
+                          foreach ($coa as $row) { ?>
+
+                            <option value="<?= $row->INDUK_COA ?>"><?= $row->INDUK_COA?> : <?= $row->NAMA_PERKIRAAN ?> </option>
+                          <?php } ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-md-4 text-md-right" for="NO_SUB_COA_1">NO_SUB_COA_1</label>
+                    <div class="col-md-6">
+                    <select class="form-control" name="NO_SUB_COA_1">
+                          <option>--Pilih Sub Coa 1--</option>
+                          <?php
+                          foreach ($subcoa1 as $row) { ?>
+
+                            <option value="<?= $row->NO_SUB_COA_1 ?>"><?= $row->NO_SUB_COA_1?> : <?= $row->NAMA_PERKIRAAN ?> </option>
+                          <?php } ?>
+                        </select>
+                    </div>
+                </div>
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="NO_SUB_COA_2">NO_SUB_COA_2</label>
                     <div class="col-md-6">
@@ -30,21 +58,9 @@
                         <?= form_error('NO_SUB_COA_2', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
-                <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="NO_SUB_COA_1">NO_SUB_COA_1</label>
-                    <div class="col-md-6">
-                        <input value="<?= set_value('NO_SUB_COA_1'); ?>" type="text" id="NO_SUB_COA_1" name="NO_SUB_COA_1" class="form-control" placeholder="NO_SUB_COA_1">
-                        <?= form_error('NO_SUB_COA_1', '<span class="text-danger small">', '</span>'); ?>
-                    </div>
-                </div>
+                
 
-                <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="INDUK_COA">INDUK_COA</label>
-                    <div class="col-md-6">
-                        <input value="<?= set_value('INDUK_COA'); ?>" type="text" id="INDUK_COA" name="INDUK_COA" class="form-control" placeholder="INDUK_COA">
-                        <?= form_error('INDUK_COA', '<span class="text-danger small">', '</span>'); ?>
-                    </div>
-                </div>
+                
 
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="NAMA_PERKIRAAN">NAMA_PERKIRAAN</label>
