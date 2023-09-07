@@ -26,98 +26,104 @@ class Inputsaldo extends CI_Controller
         $this->template->load('templates/dashboard', 'inputsaldo/data', $data);
     }
 
-    // private function _validasi($mode)
-    // {   
-    //     $this->form_validation->set_rules('NO_SUB_COA_2', 'No Sub Coa 2', 'required|trim');
-    //     $this->form_validation->set_rules('INDUK_COA', 'Induk Coa', 'required|trim');
-    //     $this->form_validation->set_rules('NAMA_PERKIRAAN', 'Nama Perkiraan', 'required|trim');
+    private function _validasi($mode)
+    {   
+        $role = $this->session->userdata('login_session')['role'];
+        
+        $this->form_validation->set_rules('SALDO_AWAL', 'Saldo Awal', 'required|trim');
 
-    //     if ($mode == 'add') {
-    //     $this->form_validation->set_rules('NO_SUB_COA_2', 'No Sub Coa 1', 'required|trim');
-
-    //         $this->form_validation->set_rules('INDUK_COA', 'Induk Coa', 'required|trim');
-    //         $this->form_validation->set_rules('NAMA_PERKIRAAN', 'Nama Perkiraan', 'required|trim');
-    //     } else {
+        if ($mode == 'add') {
+        
+            $this->form_validation->set_rules('SALDO_AWAL', 'Saldo Awal', 'required|trim');
+        } else {
             
-    //         $db = $this->admin->get('sub_coa_2', ['NO_SUB_COA_2' => $this->input->post('NO_SUB_COA_2', true)]);
-    //         $NO_SUB_COA_2 = $this->input->post('NO_SUB_COA_2', true);
+            $db = $this->admin->get("input_saldo_".$role, ['INDUK_COA' => $this->input->post('INDUK_COA', true)]);
+            $INDUK_COA = $this->input->post('INDUK_COA', true);
 
-    //         $uniq_NO_SUB_COA_2 = $db['NO_SUB_COA_2'] == $NO_SUB_COA_2 ? '' : '|is_unique[sub_coa_2.NO_SUB_COA_2]';
+            $uniq_INDUK_COA = $db['INDUK_COA'] == $INDUK_COA ? '' : '|is_unique[input_saldo_$role.INDUK_COA]';
 
-    //         $this->form_validation->set_rules('NO_SUB_COA_2', 'NO_SUB_COA_2', 'required|trim|alpha_numeric' . $uniq_NO_SUB_COA_1);
-    //     }
-    // }
+            $this->form_validation->set_rules('INDUK_COA', 'INDUK_COA', 'required|trim|alpha_numeric' . $uniq_INDUK_COA);
+        }
+    }
 
-    // public function add()
-    // {
-    //     $this->_validasi('add');
+    public function add()
+    {
+        $this->_validasi('add');
+        $role = $this->session->userdata('login_session')['role'];
 
-    //     if ($this->form_validation->run() == false) {
-    //         $data['title'] = "Tambah Sub Coa 2";
-    //         $this->template->load('templates/dashboard', 'subcoa2/add', $data);
-    //     } else {
-    //         $input = $this->input->post(null, true);
-    //         $input_data = [
-    //             'NO_SUB_COA_2'          => $input['NO_SUB_COA_2'],
-    //             'NO_SUB_COA_1'          => $input['NO_SUB_COA_1'],
-    //             'INDUK_COA'          => $input['INDUK_COA'],
-    //             'NAMA_PERKIRAAN'      => $input['NAMA_PERKIRAAN'],
-    //             'TIPE'         => $input['TIPE'],
-    //             'BAGIAN'       => $input['BAGIAN']
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = "Tambah Master Saldo";
+            $data['coa'] = $this->admin->getcoa();
+            $data['subcoa1'] = $this->admin->getsubcoa1();
+            $data['subcoa2'] = $this->admin->getsubcoa2();
+            $this->template->load('templates/dashboard', 'inputsaldo/add', $data);
+        } else {
+            $input = $this->input->post(null, true);
+            $input_data = [
+                'INDUK_COA'          => $input['INDUK_COA'],
+                'NAMA_PERKIRAAN'          => $input['NAMA_PERKIRAAN'],
+                'BAGIAN'          => $input['BAGIAN'],
+                'SALDO_AWAL'      => $input['SALDO_AWAL'],
+                'TOTAL_SALDO'       => $input['TOTAL_SALDO'],
+                'TGL_INPUT'       => $input['TGL_INPUT']
+            ];
+
+            if ($this->admin->insert("input_saldo_".$role , $input_data)) {
+                set_pesan('data berhasil disimpan.');
+                redirect('inputsaldo');
+            } else {
+                set_pesan('data gagal disimpan', false);
+                redirect('inputsaldo/add');
+            }
+        }
+    }
+
+    public function edit($getId)
+    {
+        $role = $this->session->userdata('login_session')['role'];
+
+        $id = encode_php_tags($getId);
+        $this->_validasi('edit');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = "Edit  Master Saldo";
+            $data['inputsaldo'] = $this->admin->get('input_saldo_' , ['id' => $id]);
+            $this->template->load('templates/dashboard', 'inputsaldo/edit', $data);
+        } else {
+            $input = $this->input->post(null, true);
+            $input_data = [
+                'INDUK_COA'          => $input['INDUK_COA'],
+                'NAMA_PERKIRAAN'          => $input['NAMA_PERKIRAAN'],
+                'BAGIAN'          => $input['BAGIAN'],
+                'SALDO_AWAL'      => $input['SALDO_AWAL'],
+                'TOTAL_SALDO'       => $input['TOTAL_SALDO'],
+                'TGL_INPUT'       => $input['TGL_INPUT']
  
-    //         ];
+            ];
 
-    //         if ($this->admin->insert('sub_coa_2', $input_data)) {
-    //             set_pesan('data berhasil disimpan.');
-    //             redirect('subcoa2');
-    //         } else {
-    //             set_pesan('data gagal disimpan', false);
-    //             redirect('subcoa2/add');
-    //         }
-    //     }
-    // }
+            if ($this->admin->update("input_saldo_".$role , 'id', $id, $input_data)) {
+                set_pesan('data berhasil diubah.');
+                redirect('inputsaldo');
+            } else {
+                set_pesan('data gagal diubah.', false);
+                redirect('inputsaldo/edit/' . $id);
+            }
+        }
+    }
 
-    // public function edit($getId)
-    // {
-    //     $id = encode_php_tags($getId);
-    //     $this->_validasi('edit');
+    public function delete($getId)
+    {
+        $role = $this->session->userdata('login_session')['role'];
 
-    //     if ($this->form_validation->run() == false) {
-    //         $data['title'] = "Edit Sub Coa 2";
-    //         $data['subcoa2'] = $this->admin->get('sub_coa_2', ['id' => $id]);
-    //         $this->template->load('templates/dashboard', 'subcoa2/edit', $data);
-    //     } else {
-    //         $input = $this->input->post(null, true);
-    //         $input_data = [
-    //             'NO_SUB_COA_2'          => $input['NO_SUB_COA_2'],
-    //             'NO_SUB_COA_1'          => $input['NO_SUB_COA_1'],
-    //             'INDUK_COA'          => $input['INDUK_COA'],
-    //             'NAMA_PERKIRAAN'      => $input['NAMA_PERKIRAAN'],
-    //             'TIPE'         => $input['TIPE'],
-    //             'BAGIAN'       => $input['BAGIAN']
- 
-    //         ];
-
-    //         if ($this->admin->update('sub_coa_2', 'id', $id, $input_data)) {
-    //             set_pesan('data berhasil diubah.');
-    //             redirect('subcoa2');
-    //         } else {
-    //             set_pesan('data gagal diubah.', false);
-    //             redirect('subcoa2/edit/' . $id);
-    //         }
-    //     }
-    // }
-
-    // public function delete($getId)
-    // {
-    //     $id = encode_php_tags($getId);
-    //     if ($this->admin->delete('sub_coa_2', 'id', $id)) {
-    //         set_pesan('data berhasil dihapus.');
-    //     } else {
-    //         set_pesan('data gagal dihapus.', false);
-    //     }
-    //     redirect('subcoa2');
-    // }
+        $id = encode_php_tags($getId);
+        if ($this->admin->delete("input_saldo_".$role , 'id', $id)) {
+            set_pesan('data berhasil dihapus.');
+        } else {
+            set_pesan('data gagal dihapus.', false);
+        }
+        redirect('inputsaldo');
+    }
 
     // public function toggle($getId)
     // {

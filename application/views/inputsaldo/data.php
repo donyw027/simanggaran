@@ -4,16 +4,16 @@
         <div class="row">
             <div class="col">
                 <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
-                    Data Coa
+                    Data Input Saldo
                 </h4>
             </div>
             <div class="col-auto">
-                <a href="<?= base_url('subcoa1/add') ?>" class="btn btn-sm btn-primary btn-icon-split">
+                <a href="<?= base_url('inputsaldo/add') ?>" class="btn btn-sm btn-primary btn-icon-split">
                     <span class="icon">
                         <i class="fa fa-user-plus"></i>
                     </span>
                     <span class="text">
-                        Tambah Sub Coa 2
+                        Master Input Saldo
                     </span>
                 </a>
             </div>
@@ -25,7 +25,6 @@
                 <tr>
                     <th width="30">No.</th>
                     <th>Tgl Input</th>
-                    <th>No Coa</th>
                     <th>Induk Coa</th>
                     <th>Nama Perkiraan</th>
                     <th>Bagian</th>
@@ -45,16 +44,12 @@
                         <tr>
                             <td><?= $no++; ?></td>
                             <td><?= $input_saldoo['TGL_INPUT']; ?></td>
-                            <td><?= $input_saldoo['NO_COA']; ?></td>
                             <td><?= $input_saldoo['INDUK_COA']; ?></td>
                             <td><?= $input_saldoo['NAMA_PERKIRAAN']; ?></td>
                             <td><?= $input_saldoo['BAGIAN']; ?></td>
                             <td>Rp. <?= number_format($input_saldoo['SALDO_AWAL'],0,',','.'); ?></td>
                             <td>Rp. <?= number_format($input_saldoo['TOTAL_SALDO'],0,',','.'); ?></td>
                             
-
-                           
-
                             <!-- <td>
                                 
                                 <a href="<?= base_url('subcoa2/edit/') . $input_saldoo['id'] ?>" class="btn btn-circle btn-sm btn-warning"><i class="fa fa-fw fa-edit"></i></a>

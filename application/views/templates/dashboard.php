@@ -374,30 +374,6 @@
         });
     </script>
 
-<script type="text/javascript">
-$(document).ready(function(){
-$('.NO_COA').change(function(){
-var NO_COA=$(this).val();
-$.ajax({
-url : "<?php echo base_url('realisasianggaran/get_autofill');?>",
-method : "POST",
-data : {NO_COA: NO_COA},
-async : false,
-dataType : 'json',
-success: function(data){
-var html = '';
-var i;
-     for(i=0; i<data.length; i++){
-     html += data[i].NAMA_PERKIRAAN;
-     html += data[i].SISA_AWAL;
-    }
-     $('.NAMA_PERKIRAAN').html(html);
-     $('.SISA_AWAL').html(html);
-
-  }
-});
-});
-    
 
     <?php if ($this->uri->segment(1) == 'dashboard') : ?>
         <!-- Chart -->
