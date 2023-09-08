@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -32,9 +31,11 @@
             z-index: 1;
         }
     </style>
+    
 </head>
 
 <body id="page-top">
+
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -362,6 +363,26 @@
                 lengthMenu: [
                     [5, 10, 25, 50, 100, -1],
                     [5, 10, 25, 50, 100, "All"]
+                ],
+                columnDefs: [{
+                    targets: -1,
+                    orderable: false,
+                    searchable: false
+                }]
+            });
+
+            table.buttons().container().appendTo('#dataTable_wrapper .col-md-5:eq(0)');
+        });
+
+        $(document).ready(function() {
+            var table = $('#dataTable1').DataTable({
+                buttons: [],
+                dom: "<'row px-2 px-md-4 pt-2'<'col-md-3'l><'col-md-5 text-center'B><'col-md-4'f>>" +
+                    "<'row'<'col-md-12'tr>>" +
+                    "<'row px-2 px-md-4 py-3'<'col-md-5'i><'col-md-7'p>>",
+                lengthMenu: [
+                    [25, 50, 100, -1],
+                    [25, 50, 100, "All"]
                 ],
                 columnDefs: [{
                     targets: -1,

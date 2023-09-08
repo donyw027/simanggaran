@@ -18,7 +18,14 @@ class Subcoa2 extends CI_Controller
     public function index()
     {
         $data['title'] = "Sub Coa 2";
-        $data['subcoa2'] = $this->admin->get('sub_coa_2');
+        $role = $this->session->userdata('login_session')['role'];
+
+        if (is_admin()==true) {
+            $data['subcoa2'] = $this->admin->get('sub_coa_2');
+        }else {
+        $data['subcoa2'] = $this->admin->get('sub_coa_2',null, ['BAGIAN'=>$role]);
+        }
+
         $this->template->load('templates/dashboard', 'subcoa2/data', $data);
     }
 

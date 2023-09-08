@@ -16,9 +16,12 @@ class Dashboard extends CI_Controller
         $data['title'] = "Dashboard";
 
 
-        // $u = $this->session->userdata('login_session')['role'];
-        // var_dump($u); 
-        // die; 
+        $role = $this->session->userdata('login_session')['role'];
+        
+     
+        $data['title'] = "Dashboard";
+        $data['input_saldo'] = $this->admin->get("input_saldo_".$role);
+        
 
         $data['user'] = $this->admin->count('user');
         

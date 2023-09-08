@@ -1,3 +1,5 @@
+<?php date_default_timezone_set("Asia/Jakarta"); ?>
+
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card shadow-sm mb-4 border-bottom-primary">

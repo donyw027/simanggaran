@@ -65,7 +65,7 @@ class Inputsaldo extends CI_Controller
                 'NAMA_PERKIRAAN'          => $input['NAMA_PERKIRAAN'],
                 'BAGIAN'          => $input['BAGIAN'],
                 'SALDO_AWAL'      => $input['SALDO_AWAL'],
-                'TOTAL_SALDO'       => $input['TOTAL_SALDO'],
+                'TOTAL_SALDO'       => $input['SALDO_AWAL'],
                 'TGL_INPUT'       => $input['TGL_INPUT']
             ];
 
@@ -97,7 +97,7 @@ class Inputsaldo extends CI_Controller
                 'NAMA_PERKIRAAN'          => $input['NAMA_PERKIRAAN'],
                 'BAGIAN'          => $input['BAGIAN'],
                 'SALDO_AWAL'      => $input['SALDO_AWAL'],
-                'TOTAL_SALDO'       => $input['TOTAL_SALDO'],
+                'TOTAL_SALDO'       => $input['SALDO_AWAL'],
                 'TGL_INPUT'       => $input['TGL_INPUT']
  
             ];

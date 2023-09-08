@@ -1,3 +1,5 @@
+<?php date_default_timezone_set("Asia/Jakarta"); ?>
+
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card shadow-sm mb-4 border-bottom-primary">
@@ -65,13 +67,8 @@
                 </div>
 
 
-                <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="TOTAL_SALDO">TOTAL_SALDO</label>
-                    <div class="col-md-6">
-                        <input value="<?= set_value('TOTAL_SALDO'); ?>" type="text" id="TOTAL_SALDO" name="TOTAL_SALDO" class="form-control" placeholder="TOTAL_SALDO">
+                        <input value="<?= set_value('SALDO_AWAL'); ?>" type="text" id="TOTAL_SALDO" name="TOTAL_SALDO" class="form-control" placeholder="TOTAL_SALDO" hidden>
                         <?= form_error('TOTAL_SALDO', '<span class="text-danger small">', '</span>'); ?>
-                    </div>
-                </div>
 
                
                 <div class="row form-group">

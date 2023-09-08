@@ -10,40 +10,25 @@
                 <?= $this->session->flashdata('pesan'); ?>
                 <?= form_open(); ?>
                 <div class="row form-group">
-                    <label class="col-md-3 text-md-right" for="transaksi">Laporan  Input Saldo</label>
+                    <label class="col-md-3 text-md-right" for="transaksi">Input Saldo</label>
                     <div class="col-md-9">
-                        <div class="custom-control custom-radio">
-                            <input value="barang_masuk" type="radio" id="barang_masuk" name="transaksi" class="custom-control-input">
-                            <label class="custom-control-label" for="barang_masuk">Keuangan</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input value="barang_keluar" type="radio" id="barang_keluar" name="transaksi" class="custom-control-input">
-                            <label class="custom-control-label" for="barang_keluar">Marketing</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input value="barang_masuk" type="radio" id="barang_masuk" name="transaksi" class="custom-control-input">
-                            <label class="custom-control-label" for="barang_masuk">Pendidikan</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input value="barang_keluar" type="radio" id="barang_keluar" name="transaksi" class="custom-control-input">
-                            <label class="custom-control-label" for="barang_keluar">Sarpras</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input value="barang_masuk" type="radio" id="barang_masuk" name="transaksi" class="custom-control-input">
-                            <label class="custom-control-label" for="barang_masuk">SDM</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input value="barang_keluar" type="radio" id="barang_keluar" name="transaksi" class="custom-control-input">
-                            <label class="custom-control-label" for="barang_keluar">Sekretariat</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input value="barang_masuk" type="radio" id="barang_masuk" name="transaksi" class="custom-control-input">
-                            <label class="custom-control-label" for="barang_masuk">Yayasan</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input value="barang_masuk" type="radio" id="barang_masuk" name="transaksi" class="custom-control-input">
-                            <label class="custom-control-label" for="barang_masuk">Keseluruhan</label>
-                        </div>
+                    <?php if (is_admin()==true) { ?>
+                        <select name="BAGIAN" id="" class="form-control">
+                            <option value="keuangan">Keuangan</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="pendidikan">Pendidikan</option>
+                            <option value="sarpras">Sarpras</option>
+                            <option value="sdm">SDM</option>
+                            <option value="sekretariat">Sekretariat</option>
+                            <option value="yayasan">Yayasan</option>
+                            <option value="keseluruhan">Keseluruhan</option>
+                        </select>
+                    <?php }else{ ?>
+                        <?php 
+                        $role = $this->session->userdata('login_session')['role'];
+                        ?>
+                        <input value="<?= $role; ?>" type="text" id="BAGIAN" name="BAGIAN" class="form-control" placeholder="BAGIAN" readonly>
+                        <?php } ?>
                         <?= form_error('transaksi', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>

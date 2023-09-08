@@ -17,8 +17,15 @@ class Indukcoa extends CI_Controller
 
     public function index()
     {
+
         $data['title'] = "Induk Coa";
-        $data['indukcoa'] = $this->admin->get('coa');
+        $role = $this->session->userdata('login_session')['role'];
+
+        if (is_admin()==true) {
+            $data['indukcoa'] = $this->admin->get('coa');
+        }else {
+        $data['indukcoa'] = $this->admin->get('coa',null, ['BAGIAN'=>$role]);
+        }
         $this->template->load('templates/dashboard', 'indukcoa/data', $data);
     }
 
