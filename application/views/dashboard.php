@@ -79,6 +79,8 @@
             </div>
         </div>
     </div>
+    <?php if (!is_admin()==true) { ?>
+        
     <div class="col-xl-12 ">
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
@@ -126,6 +128,8 @@
             </tbody>
         </table>
     </div>
+    <?php } ?>
+
                 </div>
                 
                 

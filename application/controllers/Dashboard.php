@@ -18,9 +18,11 @@ class Dashboard extends CI_Controller
 
         $role = $this->session->userdata('login_session')['role'];
         
-     
-        $data['title'] = "Dashboard";
+        if (!is_admin()==true) {
+            # code...
         $data['input_saldo'] = $this->admin->get("input_saldo_".$role);
+
+        }
         
 
         $data['user'] = $this->admin->count('user');
