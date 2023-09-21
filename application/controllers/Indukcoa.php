@@ -41,9 +41,9 @@ class Indukcoa extends CI_Controller
             $db = $this->admin->get('coa', ['INDUK_COA' => $this->input->post('INDUK_COA', true)]);
             $INDUK_COA = $this->input->post('INDUK_COA', true);
 
-            $uniq_INDUK_COA = $db['INDUK_COA'] == $INDUK_COA ? '' : '|is_unique[coa.INDUK_COA]';
+            // $uniq_INDUK_COA = $db['INDUK_COA'] == $INDUK_COA ? '' : '|is_unique[coa.INDUK_COA]';
 
-            $this->form_validation->set_rules('INDUK_COA', 'INDUK_COA', 'required|trim|alpha_numeric' . $uniq_INDUK_COA);
+            // $this->form_validation->set_rules('INDUK_COA', 'INDUK_COA', 'required|trim|alpha_numeric' . $uniq_INDUK_COA);
         }
     }
 

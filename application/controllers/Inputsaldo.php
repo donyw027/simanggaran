@@ -22,6 +22,7 @@ class Inputsaldo extends CI_Controller
         
      
         $data['title'] = "Input Saldo";
+        $data['coa'] = $this->admin->getcoa();
         $data['input_saldo'] = $this->admin->get("input_saldo_".$role);
         $this->template->load('templates/dashboard', 'inputsaldo/data', $data);
     }

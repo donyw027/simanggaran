@@ -45,9 +45,7 @@ class Subcoa2 extends CI_Controller
             $db = $this->admin->get('sub_coa_2', ['NO_SUB_COA_2' => $this->input->post('NO_SUB_COA_2', true)]);
             $NO_SUB_COA_2 = $this->input->post('NO_SUB_COA_2', true);
 
-            $uniq_NO_SUB_COA_2 = $db['NO_SUB_COA_2'] == $NO_SUB_COA_2 ? '' : '|is_unique[sub_coa_2.NO_SUB_COA_2]';
-
-            $this->form_validation->set_rules('NO_SUB_COA_2', 'NO_SUB_COA_2', 'required|trim|alpha_numeric' . $uniq_NO_SUB_COA_1);
+            
         }
     }
 
