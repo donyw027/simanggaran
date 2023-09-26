@@ -23,9 +23,52 @@ class Inputsaldo extends CI_Controller
      
         $data['title'] = "Input Saldo";
         $data['coa'] = $this->admin->getcoa();
+        if (is_admin() == true) {
+            $data['input_saldo'] = $this->admin->get("input_saldo_keuangan");
+        }else{
         $data['input_saldo'] = $this->admin->get("input_saldo_".$role);
+        }
         $this->template->load('templates/dashboard', 'inputsaldo/data', $data);
+
+
+        $INDUK_COA = $this->input->post('INDUK_COA');
+        $JUMLAH_TAMBAH = $this->input->post('JUMLAH_TAMBAH');
+        $TOTAL_SALDO = 10;
+        $TGL_INPUT = $this->input->post('TGL_INPUT');
+
+        $keyword = $this->input->post('BAGIAN');
+        // var_dump($keyword);die();
+
+        
+
+        // $penjumlahan = $JUMLAH_TAMBAH + $TOTAL_SALDO;
+        // var_dump($penjumlahan);die();
+
+
+        
+        // $query = $this->db->query("UPDATE input_saldo_.$role set TOTAL_SALDO = $saldotambah where INDUK_COA = $INDUK_COA");
+
+        // print_r($INDUK_COA);
+        // print_r($JUMLAH_TAMBAH);
+        // print_r($TGL_INPUT);
+        // die();       
+        
+
     }
+
+    public function search()
+	{
+		$keyword = $this->input->post('BAGIAN');
+        // var_dump($keyword);die();
+		
+		$data['input_saldo']=$this->admin->get_keyword($keyword);
+				
+        $this->template->load('templates/dashboard', 'inputsaldo/data', $data);
+	
+	}
+
+    
+
 
     private function _validasi($mode)
     {   
@@ -79,6 +122,7 @@ class Inputsaldo extends CI_Controller
             }
         }
     }
+    
 
     public function edit($getId)
     {

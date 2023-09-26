@@ -7,10 +7,42 @@
                 <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
                     Data Input Saldo
                 </h4>
+                <?php if (is_admin()==true) { ?>
+                    <br>
+                <?= $this->session->flashdata('pesan'); ?>
+                <?= form_open(); ?>
+                <!-- <form method="post" action="<?= base_url() ?>inputsaldo/search"> -->
+        <div class="row" style="margin-left: 20px;">
+          <label>Pilih Bagian</label>
+          <div class="col-3">
+          <select name="BAGIAN" id="" class="form-control">
+                            <option value="keuangan">Keuangan</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="pendidikan">Pendidikan</option>
+                            <option value="sarpras">Sarpras</option>
+                            <option value="sdm">SDM</option>
+                            <option value="sekretariat">Sekretariat</option>
+                            <option value="yayasan">Yayasan</option>
+                            <option value="keseluruhan">Keseluruhan</option>
+                        </select>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-primary" type="submit">Lihat Input Saldo</button>
+          </div>
+        </div>
+
+<br>
+        
+
+      <!-- </form> -->
+      <?= form_close(); ?>
+      <br>
+                <?php } ?>
             </div>
             <div class="col-auto">
                 
-            <button href="" class="btn btn-sm btn-primary btn-icon-split" data-toggle="modal" data-target="#tambahsaldo" >
+            <?php if (!is_admin()==true) { ?>
+                <button href="" class="btn btn-sm btn-primary btn-icon-split" data-toggle="modal" data-target="#tambahsaldo" >
                     <span class="icon">
                         <i class="fa fa-plus"></i>
                     </span>
@@ -18,6 +50,8 @@
                         Tambah Saldo
                     </span>
             </button>
+            <?php } ?>
+            
             <div id="tambahsaldo" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <!-- konten modal-->
@@ -34,7 +68,7 @@
                     <div class="col-md-6">
                     <?= $this->session->flashdata('pesan'); ?>
                 <?= form_open(); ?>
-                    <select class="form-control" name="INDUK_COA" Change="INDUK_COA" id="INDUK_COA">
+                    <select class="form-control" name="INDUK_COA" Change="INDUK_COA" id="INDUK_COA" onchange="getSaldo()">
                           <option>--Pilih Induk Coa--</option>
                           <?php
                           foreach ($coa as $row) { ?>
@@ -43,15 +77,29 @@
                           <?php } ?>
                         </select>
                     </div>
-                               <br> <br> 
-                    <label class="col-md-4 text-md-right" for="INDUK_COA">Jumlah Tambah Saldo</label>
+
+                    <!-- <div id="txtHint">Customer info will be listed here...</div> -->
+                    <br> <br> 
+                    <label class="col-md-4 text-md-right" for="TOTAL_SALDO">Saldo Awal</label>
                     <div class="col-md-6">
-                    <input value="<?= set_value('SALDO_AWAL'); ?>" type="text" id="SALDO_AWAL" name="SALDO_AWAL" class="form-control" placeholder="Masukan Tambah Saldo">
+                    <input value="<?= set_value('SALDO_AWAL'); ?>" type="text" id="SALDO_AWAL" name="SALDO_AWAL" class="form-control" placeholder="Saldo Awal"  readonly >
                         <?= form_error('SALDO_AWAL', '<span class="text-danger small">', '</span>'); ?>
+                    </div>
+                    <br> <br> 
+                    <label class="col-md-4 text-md-right" for="TOTAL_SALDO">Total Saldo</label>
+                    <div class="col-md-6">
+                    <input value="<?= set_value('TOTAL_SALDO'); ?>" type="text" id="TOTAL_SALDO" name="TOTAL_SALDO" class="form-control" placeholder="Total Saldo" readonly>
+                        <?= form_error('TOTAL_SALDO', '<span class="text-danger small">', '</span>'); ?>
+                    </div>
+                               <br> <br> 
+                    <label class="col-md-4 text-md-right" for="JUMLAH_TAMBAH">Jumlah Tambah Saldo</label>
+                    <div class="col-md-6">
+                    <input value="<?= set_value('JUMLAH_TAMBAH'); ?>" type="text" id="JUMLAH_TAMBAH" name="JUMLAH_TAMBAH" class="form-control" placeholder="Masukan Tambah Saldo">
+                        <?= form_error('JUMLAH_TAMBAH', '<span class="text-danger small">', '</span>'); ?>
                     </div>
 
                     <br> <br> 
-                    <label class="col-md-4 text-md-right" for="INDUK_COA">Tanggal Input</label>
+                    <label class="col-md-4 text-md-right" for="TGL_INPUT">Tanggal Input</label>
                     <div class="col-md-6">
                     <?php $date = date('d-M-y | h:m'); ?>
                         <input value="<?= $date; ?>" type="text" id="TGL_INPUT" name="TGL_INPUT" class="form-control" placeholder="TGL_INPUT" readonly>
@@ -79,8 +127,8 @@
             </div>
 
 
-
-                <a href="<?= base_url('inputsaldo/add') ?>" class="btn btn-sm btn-primary btn-icon-split">
+                <?php if (!is_admin()== true) { ?>
+                    <a href="<?= base_url('inputsaldo/add') ?>" class="btn btn-sm btn-primary btn-icon-split">
                     <span class="icon">
                         <i class="fa fa-user-plus"></i>
                     </span>
@@ -88,6 +136,8 @@
                         Master Input Saldo
                     </span>
                 </a>
+                <?php } ?>             
+                
             </div>
         </div>
     </div>
@@ -138,3 +188,35 @@
         </table>
     </div>
 </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+    function getSaldo(){
+        // alert('ss');
+        var INDUK_COA = $("#INDUK_COA").val();
+        $.ajax({
+            url: 'ajax.php',
+            data:"INDUK_COA="+INDUK_COA ,
+        }).success(function (data) {
+            var json = data,
+            obj = JSON.parse(json);
+            $('#SALDO_AWAL').val(obj.SALDO_AWAL);
+            $('#TOTAL_SALDO').val(obj.TOTAL_SALDO);
+ 
+           
+        });
+    }
+
+//     $('#INDUK_COA').change(function(e){
+//         alert('ss')
+//      var element = $(this).find('option:selected'); 
+//      var desc = element.attr("TOTAL_SALDO");
+//      var desc = element.attr("SALDO_AWAL");
+
+//     $('#TOTAL_SALDO').val(desc);
+//     $('#SALDO_AWAL').val(desc);
+//     console.log(desc)
+
+// });
+</script>

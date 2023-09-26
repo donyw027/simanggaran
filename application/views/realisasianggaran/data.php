@@ -6,9 +6,42 @@
                 <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
                     Data Realisasi Anggaran
                 </h4>
+                <?php if (is_admin()==true) { ?>
+                    <br>
+                <?= $this->session->flashdata('pesan'); ?>
+                <?= form_open(); ?>
+                <!-- <form method="post" action="<?= base_url() ?>inputsaldo/search"> -->
+        <div class="row" style="margin-left: 20px;">
+          <label>Pilih Bagian</label>
+          <div class="col-3">
+          <select name="BAGIAN" id="" class="form-control">
+                            <option value="keuangan">Keuangan</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="pendidikan">Pendidikan</option>
+                            <option value="sarpras">Sarpras</option>
+                            <option value="sdm">SDM</option>
+                            <option value="sekretariat">Sekretariat</option>
+                            <option value="yayasan">Yayasan</option>
+                            <option value="keseluruhan">Keseluruhan</option>
+                        </select>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-primary" type="submit">Lihat Input Saldo</button>
+          </div>
+        </div>
+
+<br>
+        
+
+      <!-- </form> -->
+      <?= form_close(); ?>
+      <br>
+                <?php } ?>
+                
             </div>
             <div class="col-auto">
-                <a href="<?= base_url('realisasianggaran/add') ?>" class="btn btn-sm btn-primary btn-icon-split">
+                <?php if (!is_admin()==true) { ?>
+                    <a href="<?= base_url('realisasianggaran/add') ?>" class="btn btn-sm btn-primary btn-icon-split">
                     <span class="icon">
                         <i class="fa fa-user-plus"></i>
                     </span>
@@ -16,6 +49,8 @@
                         Tambah Realisasi Anggaran
                     </span>
                 </a>
+                <?php } ?>
+                
             </div>
         </div>
     </div>

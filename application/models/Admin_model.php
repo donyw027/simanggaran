@@ -66,6 +66,15 @@ class Admin_model extends CI_Model
         
 	}
 
+    public function get_keyword($keyword="sarpras")
+    {
+         $this->db->select('*');
+        $this->db->from('input_saldo_'.$keyword);
+        
+        return $this->db->get()->result();
+    }
+
+
     public function getsubcoa1()
 	{
         $role = $this->session->userdata('login_session')['role'];

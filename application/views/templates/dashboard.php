@@ -324,6 +324,9 @@
     <script src="<?= base_url(); ?>assets/vendor/gijgo/js/gijgo.min.js"></script>
 
     <script type="text/javascript">
+        
+
+
         $(function() {
             $('.date').datepicker({
                 uiLibrary: 'bootstrap4',

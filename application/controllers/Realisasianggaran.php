@@ -22,7 +22,13 @@ class Realisasianggaran extends CI_Controller
         
      
         $data['title'] = "Realisasi Anggaran";
-        $data['realisasi'] = $this->admin->get("realisasi_".$role);
+        if (is_admin() == true) {
+            $data['realisasi'] = $this->admin->get("realisasi_keuangan");
+        }else{
+            $data['realisasi'] = $this->admin->get("realisasi_".$role);
+        }
+
+       
         $this->template->load('templates/dashboard', 'realisasianggaran/data', $data);
     }
 
