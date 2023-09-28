@@ -19,55 +19,56 @@ class Inputsaldo extends CI_Controller
     public function index()
     {
         $role = $this->session->userdata('login_session')['role'];
-        
+           
      
         $data['title'] = "Input Saldo";
         $data['coa'] = $this->admin->getcoa();
         if (is_admin() == true) {
-            $data['input_saldo'] = $this->admin->get("input_saldo_keuangan");
+            $role='keuangan';
+            $keyword = $this->input->get('BAGIAN');
+            if ($keyword) {
+                $role = $keyword;
+            }
+            $data['input_saldo'] = $this->admin->get("input_saldo_$role");
+            
         }else{
         $data['input_saldo'] = $this->admin->get("input_saldo_".$role);
         }
         $this->template->load('templates/dashboard', 'inputsaldo/data', $data);
 
 
-        $INDUK_COA = $this->input->post('INDUK_COA');
-        $JUMLAH_TAMBAH = $this->input->post('JUMLAH_TAMBAH');
-        $TOTAL_SALDO = 10;
-        $TGL_INPUT = $this->input->post('TGL_INPUT');
-
-        $keyword = $this->input->post('BAGIAN');
-        // var_dump($keyword);die();
-
-        
-
-        // $penjumlahan = $JUMLAH_TAMBAH + $TOTAL_SALDO;
-        // var_dump($penjumlahan);die();
-
-
-        
-        // $query = $this->db->query("UPDATE input_saldo_.$role set TOTAL_SALDO = $saldotambah where INDUK_COA = $INDUK_COA");
-
-        // print_r($INDUK_COA);
-        // print_r($JUMLAH_TAMBAH);
-        // print_r($TGL_INPUT);
-        // die();       
-        
 
     }
 
-    public function search()
-	{
-		$keyword = $this->input->post('BAGIAN');
-        // var_dump($keyword);die();
-		
-		$data['input_saldo']=$this->admin->get_keyword($keyword);
-				
-        $this->template->load('templates/dashboard', 'inputsaldo/data', $data);
-	
-	}
+    function tambahsaldo() {
+        $role = $this->session->userdata('login_session')['role'];
+        // print_r($role);die();
 
-    
+        $INDUK_COA = $this->input->post('INDUK_COA');
+        $JUMLAH_TAMBAH = $this->input->post('JUMLAH_TAMBAH');
+        $TOTAL_SALDO = $this->input->post('TOTAL_SALDO');
+        // $TGL_INPUT = $this->input->post('TGL_INPUT');
+        $hasil_jumlah = $TOTAL_SALDO + $JUMLAH_TAMBAH ;
+        $this->admin->update('input_saldo_'.$role , 'INDUK_COA' , $INDUK_COA ,['TOTAL_SALDO'=>$hasil_jumlah] );       
+        echo json_encode([
+            'Sukses'=>True
+        ]);
+
+        
+    }
+
+    function getsaldo() {
+        $role = $this->session->userdata('login_session')['role'];
+
+        $saldo= $this->db->get_where('input_saldo_'.$role, ['INDUK_COA'=>$_GET['INDUK_COA']])->row_array();
+
+    $data_saldo = array('TOTAL_SALDO'      =>  $saldo['TOTAL_SALDO'],
+                        'SALDO_AWAL'     =>  $saldo['SALDO_AWAL']);
+    echo json_encode($data_saldo);
+
+    }
+
+ 
 
 
     private function _validasi($mode)

@@ -10,8 +10,7 @@
                 <?php if (is_admin()==true) { ?>
                     <br>
                 <?= $this->session->flashdata('pesan'); ?>
-                <?= form_open(); ?>
-                <!-- <form method="post" action="<?= base_url() ?>inputsaldo/search"> -->
+                <form method="get" action="<?= base_url() ?>inputsaldo/">
         <div class="row" style="margin-left: 20px;">
           <label>Pilih Bagian</label>
           <div class="col-3">
@@ -34,8 +33,7 @@
 <br>
         
 
-      <!-- </form> -->
-      <?= form_close(); ?>
+      </form>
       <br>
                 <?php } ?>
             </div>
@@ -67,7 +65,6 @@
                     <label class="col-md-4 text-md-right" for="INDUK_COA">Pilih Induk Coa</label>
                     <div class="col-md-6">
                     <?= $this->session->flashdata('pesan'); ?>
-                <?= form_open(); ?>
                     <select class="form-control" name="INDUK_COA" Change="INDUK_COA" id="INDUK_COA" onchange="getSaldo()">
                           <option>--Pilih Induk Coa--</option>
                           <?php
@@ -109,14 +106,13 @@
 
                 <div class="row form-group justify-content-end">
                     <div class="col-md-8">
-                        <button type="submit" class="btn btn-primary btn-icon-split">
+                        <button type="submit" class="btn btn-primary btn-icon-split" onclick="tambahsaldo()">
                             <span class="icon"><i class="fa fa-save"></i></span>
                             <span class="text">Simpan</span>
                         </button>
                           </div>
                           </div>
 
-                <?= form_close(); ?>
                         </div>
                         <!-- footer modal -->
                         <!-- <div class="modal-footer">
@@ -189,34 +185,47 @@
     </div>
 </div>
 
+<?php $CI =& get_instance(); ?>
+<script> 
+    var csrf_name = '<?php echo $CI->security->get_csrf_token_name(); ?>';
+    var csrf_hash = '<?php echo $CI->security->get_csrf_hash(); ?>';
+</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
     function getSaldo(){
         // alert('ss');
         var INDUK_COA = $("#INDUK_COA").val();
-        $.ajax({
-            url: 'ajax.php',
-            data:"INDUK_COA="+INDUK_COA ,
-        }).success(function (data) {
+     
+
+        $.get("inputsaldo/getsaldo", {INDUK_COA: INDUK_COA} , function(data){
             var json = data,
             obj = JSON.parse(json);
             $('#SALDO_AWAL').val(obj.SALDO_AWAL);
-            $('#TOTAL_SALDO').val(obj.TOTAL_SALDO);
- 
-           
+            $('#TOTAL_SALDO').val(obj.TOTAL_SALDO);   
         });
     }
 
-//     $('#INDUK_COA').change(function(e){
-//         alert('ss')
-//      var element = $(this).find('option:selected'); 
-//      var desc = element.attr("TOTAL_SALDO");
-//      var desc = element.attr("SALDO_AWAL");
+    function tambahsaldo(){
+        var INDUK_COA = $("#INDUK_COA").val();
+        var TOTAL_SALDO = $("#TOTAL_SALDO").val();
+        var JUMLAH_TAMBAH = $("#JUMLAH_TAMBAH").val();
 
-//     $('#TOTAL_SALDO').val(desc);
-//     $('#SALDO_AWAL').val(desc);
-//     console.log(desc)
 
-// });
+        $.post("inputsaldo/tambahsaldo", {INDUK_COA: INDUK_COA , TOTAL_SALDO : TOTAL_SALDO , JUMLAH_TAMBAH : JUMLAH_TAMBAH , csrf_test_name : csrf_hash} , function(data){
+            var json = data,
+            obj = JSON.parse(json);
+            
+            // console.log(data);
+            alert('Sukses Tambah Saldo');
+            location.reload()
+            // $('#INDUK_COA').val(obj.INDUK_COA);
+            // $('#SALDO_AWAL').val(obj.SALDO_AWAL);
+            // $('#JUMLAH_TAMBAH').val(obj.JUMLAH_TAMBAH);   
+        });
+    }
+
+
+
+
 </script>
