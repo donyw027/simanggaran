@@ -1,7 +1,6 @@
-<?php date_default_timezone_set("Asia/Jakarta"); ?>
 
 <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="card shadow-sm mb-4 border-bottom-primary">
             <div class="card-header bg-white py-3">
                 <div class="row">
@@ -25,11 +24,19 @@
             <div class="card-body pb-2">
                 <?= $this->session->flashdata('pesan'); ?>
                 <?= form_open(); ?>
+                <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6"></div>
+
+                </div>
+
+
 
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="NO_COA">INDUK_COA</label>
                     <div class="col-md-6">
-                    <select class="form-control" name="NO_COA" Change="NO_COA" id="NO_COA">
+                    <select class="form-control" name="NO_COA" Change="NO_COA" id="NO_COA" onchange="getSaldo()">
+                    <!-- <select class="form-control" name="NO_COA" Change="INDUK_COA" id="INDUK_COA" onchange="getSaldo()"> -->
                           <option>--Pilih Induk Coa--</option>
                           <?php
                           foreach ($coa as $row) { ?>
@@ -43,7 +50,7 @@
                     <label class="col-md-4 text-md-right" for="NO_SUB_COA_1">NO_SUB_COA_1</label>
                     <div class="col-md-6">
                     <select class="form-control" name="NO_SUB_COA_1">
-                          <option>--Pilih Sub Coa 1--</option>
+                          <option value="-">--Pilih Sub Coa 1--</option>
                           <?php
                           foreach ($subcoa1 as $row) { ?>
 
@@ -56,7 +63,7 @@
                     <label class="col-md-4 text-md-right" for="NO_SUB_COA_2">NO_SUB_COA_2</label>
                     <div class="col-md-6">
                     <select class="form-control" name="NO_SUB_COA_2">
-                          <option>--Pilih Sub Coa 2--</option>
+                          <option value="-">--Pilih Sub Coa 2--</option>
                           <?php
                           foreach ($subcoa2 as $row) { ?>
 
@@ -69,7 +76,7 @@
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="NAMA_PERKIRAAN">NAMA_PERKIRAAN</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('NAMA_PERKIRAAN'); ?>" type="text" id="NAMA_PERKIRAAN" name="NAMA_PERKIRAAN" class="form-control" placeholder="NAMA_PERKIRAAN">
+                        <input value="<?= set_value('NAMA_PERKIRAAN'); ?>" type="text" id="NAMA_PERKIRAAN" name="NAMA_PERKIRAAN" class="form-control" placeholder="NAMA_PERKIRAAN" readonly>
                         <?= form_error('NAMA_PERKIRAAN', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
@@ -93,9 +100,18 @@
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="SALDO_AWAL">SALDO_AWAL</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('SALDO_AWAL'); ?>" type="text" id="SALDO_AWAL" name="SALDO_AWAL" class="form-control" placeholder="SALDO_AWAL">
+                        <input value="<?= set_value('SALDO_AWAL'); ?>" type="text" id="SALDO_AWAL" name="SALDO_AWAL" class="form-control" placeholder="SALDO_AWAL" readonly>
                         <?= form_error('SALDO_AWAL', '<span class="text-danger small">', '</span>'); ?>
                     </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-md-4 text-md-right" for="TOTAL_SALDO">TOTAL_SALDO</label>
+                    <div class="col-md-6">
+                        <input value="<?= set_value('TOTAL_SALDO'); ?>" type="text" id="TOTAL_SALDO" name="TOTAL_SALDO" class="form-control" placeholder="TOTAL_SALDO" readonly>
+                        <?= form_error('TOTAL_SALDO', '<span class="text-danger small">', '</span>'); ?>
+                    </div>
+                    
                 </div>
 
                 <div class="row form-group">
@@ -106,28 +122,13 @@
                     </div>
                 </div>
 
-                <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="SISA_SALDO">SISA_SALDO</label>
-                    <div class="col-md-6">
-                        <input value="<?= set_value('SISA_SALDO'); ?>" type="text" id="SISA_SALDO" name="SISA_SALDO" class="form-control" placeholder="SISA_SALDO">
-                        <?= form_error('SISA_SALDO', '<span class="text-danger small">', '</span>'); ?>
-                    </div>
-                </div>
-
-                <div class="row form-group">
-                    <label class="col-md-4 text-md-right" for="TOTAL_SALDO">TOTAL_SALDO</label>
-                    <div class="col-md-6">
-                        <input value="<?= set_value('TOTAL_SALDO'); ?>" type="text" id="TOTAL_SALDO" name="TOTAL_SALDO" class="form-control" placeholder="TOTAL_SALDO">
-                        <?= form_error('TOTAL_SALDO', '<span class="text-danger small">', '</span>'); ?>
-                    </div>
-                </div>
-
-               
+                
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="TGL_INPUT">TGL_INPUT</label>
                     <div class="col-md-6">
+                        <?php date_default_timezone_set("Asia/Jakarta"); ?>
                         <?php $date = date('d-M-y | h:m'); ?>
-                        <input value="<?= $date; ?>" type="text" id="TGL_INPUT" name="TGL_INPUT" class="form-control" placeholder="TGL_INPUT">
+                        <input value="<?= $date; ?>" type="text" id="TGL_INPUT" name="TGL_INPUT" class="form-control" placeholder="TGL_INPUT" readonly>
                         <?= form_error('TGL_INPUT', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
@@ -150,3 +151,21 @@
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+    function getSaldo(){
+        // alert('ss');
+        var NO_COA = $("#NO_COA").val();
+     
+
+        $.get("getsaldo", {NO_COA: NO_COA} , function(data){
+            var json = data,
+            obj = JSON.parse(json);
+            $('#NAMA_PERKIRAAN').val(obj.NAMA_PERKIRAAN);
+
+            $('#SALDO_AWAL').val(obj.SALDO_AWAL);
+            $('#TOTAL_SALDO').val(obj.TOTAL_SALDO);   
+        });
+    }
+    </script>

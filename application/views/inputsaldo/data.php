@@ -1,4 +1,3 @@
-<?php date_default_timezone_set("Asia/Jakarta"); ?>
 <?= $this->session->flashdata('pesan'); ?>
 <div class="card shadow-sm mb-4 border-bottom-primary">
     <div class="card-header bg-white py-3">
@@ -7,7 +6,7 @@
                 <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
                     Data Input Saldo
                 </h4>
-                <?php if (is_admin()==true) { ?>
+                <?php if (is_admin()==true | is_yayasan() == true) { ?>
                     <br>
                 <?= $this->session->flashdata('pesan'); ?>
                 <form method="get" action="<?= base_url() ?>inputsaldo/">
@@ -22,7 +21,7 @@
                             <option value="sdm">SDM</option>
                             <option value="sekretariat">Sekretariat</option>
                             <option value="yayasan">Yayasan</option>
-                            <option value="keseluruhan">Keseluruhan</option>
+                            <!-- <option value="keseluruhan">Keseluruhan</option> -->
                         </select>
           </div>
           <div class="col-3">
@@ -98,6 +97,8 @@
                     <br> <br> 
                     <label class="col-md-4 text-md-right" for="TGL_INPUT">Tanggal Input</label>
                     <div class="col-md-6">
+<?php date_default_timezone_set("Asia/Jakarta"); ?>
+
                     <?php $date = date('d-M-y | h:m'); ?>
                         <input value="<?= $date; ?>" type="text" id="TGL_INPUT" name="TGL_INPUT" class="form-control" placeholder="TGL_INPUT" readonly>
                         <?= form_error('TGL_INPUT', '<span class="text-danger small">', '</span>'); ?>

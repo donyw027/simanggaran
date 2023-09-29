@@ -36,6 +36,8 @@
 </head>
 
 <body id="page-top">
+<?php date_default_timezone_set("Asia/Jakarta"); ?>
+
 
 
     <!-- Page Wrapper -->
@@ -79,6 +81,13 @@
                     <span>Input Saldo</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link pb-0" href="<?= base_url('indukcoa/lihatcoa'); ?>">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Lihat Daftar Coa</span>
+                </a>
+            </li>
+
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -95,7 +104,7 @@
                     </div>
                 </div>
             </li>
-
+            
             <!-- Divider -->
             <hr class="sidebar-divider">
             
@@ -384,6 +393,25 @@
                 dom: "<'row px-2 px-md-4 pt-2'<'col-md-3'l><'col-md-5 text-center'B><'col-md-4'f>>" +
                     "<'row'<'col-md-12'tr>>" +
                     "<'row px-2 px-md-4 py-3'<'col-md-5'i><'col-md-7'p>>",
+                lengthMenu: [
+                    [25, 50, 100, -1],
+                    [25, 50, 100, "All"]
+                ],
+                columnDefs: [{
+                    targets: -1,
+                    orderable: false,
+                    searchable: false
+                }]
+            });
+
+            table.buttons().container().appendTo('#dataTable_wrapper .col-md-5:eq(0)');
+        });
+
+        $(document).ready(function() {
+            var table = $('#dataTable2').DataTable({
+                buttons: [],
+                dom: "<'row px-2 px-md-4 pt-2'<'col-md-3'l><'col-md-5 text-center'B><'col-md-4'f>>" +
+                    "<'row'<'col-md-12'tr>>" ,
                 lengthMenu: [
                     [25, 50, 100, -1],
                     [25, 50, 100, "All"]

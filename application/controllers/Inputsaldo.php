@@ -23,8 +23,8 @@ class Inputsaldo extends CI_Controller
      
         $data['title'] = "Input Saldo";
         $data['coa'] = $this->admin->getcoa();
-        if (is_admin() == true) {
-            $role='keuangan';
+        if (is_admin() == true | is_yayasan() == true) {
+            $role='yayasan';
             $keyword = $this->input->get('BAGIAN');
             if ($keyword) {
                 $role = $keyword;

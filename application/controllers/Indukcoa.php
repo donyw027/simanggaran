@@ -29,6 +29,23 @@ class Indukcoa extends CI_Controller
         $this->template->load('templates/dashboard', 'indukcoa/data', $data);
     }
 
+    public function lihatcoa()
+    {
+
+        $data['title'] = "Lihat Coa";
+        $role = $this->session->userdata('login_session')['role'];
+
+        if (is_admin()==true) {
+            $data['indukcoa'] = $this->admin->get('coa');
+        }else {
+        $data['indukcoa'] = $this->admin->get('coa',null, ['BAGIAN'=>$role]);
+        $data['sub_coa_1'] = $this->admin->get('sub_coa_1',null, ['BAGIAN'=>$role]);
+        $data['sub_coa_2'] = $this->admin->get('sub_coa_2',null, ['BAGIAN'=>$role]);
+
+        }
+        $this->template->load('templates/dashboard', 'lihatcoa/data', $data);
+    }
+
     private function _validasi($mode)
     {
         $this->form_validation->set_rules('INDUK_COA', 'Induk COa', 'required|trim');

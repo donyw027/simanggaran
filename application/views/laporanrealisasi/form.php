@@ -12,7 +12,7 @@
                 <div class="row form-group">
                     <label class="col-md-3 text-md-right" for="transaksi"> Realisasi</label>
                     <div class="col-md-9">
-                    <?php if (is_admin()==true) { ?>
+                    <?php if (is_admin()==true | is_yayasan() == true) { ?>
                         <select name="BAGIAN" id="" class="form-control">
                             <option value="keuangan">Keuangan</option>
                             <option value="marketing">Marketing</option>

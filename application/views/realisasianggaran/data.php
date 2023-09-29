@@ -6,11 +6,10 @@
                 <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
                     Data Realisasi Anggaran
                 </h4>
-                <?php if (is_admin()==true) { ?>
+                <?php if (is_admin()==true | is_yayasan()==true) { ?>
                     <br>
                 <?= $this->session->flashdata('pesan'); ?>
-                <?= form_open(); ?>
-                <!-- <form method="post" action="<?= base_url() ?>inputsaldo/search"> -->
+                <form method="get" action="<?= base_url() ?>realisasianggaran/">
         <div class="row" style="margin-left: 20px;">
           <label>Pilih Bagian</label>
           <div class="col-3">
@@ -22,19 +21,18 @@
                             <option value="sdm">SDM</option>
                             <option value="sekretariat">Sekretariat</option>
                             <option value="yayasan">Yayasan</option>
-                            <option value="keseluruhan">Keseluruhan</option>
+                            <!-- <option value="keseluruhan">Keseluruhan</option> -->
                         </select>
           </div>
           <div class="col-3">
-            <button class="btn btn-primary" type="submit">Lihat Input Saldo</button>
+            <button class="btn btn-primary" type="submit">Lihat Realisasi</button>
           </div>
         </div>
 
 <br>
         
 
-      <!-- </form> -->
-      <?= form_close(); ?>
+      </form>
       <br>
                 <?php } ?>
                 
@@ -64,9 +62,9 @@
                     <th>Bagian</th>
                     <th>Nama Realisasi</th>
                     <th>Saldo Awal</th>
+                    <th>Total Saldo</th>
                     <th>Biaya Realisasi</th>
                     <th>Sisa Saldo</th>
-                    <th>Total Saldo</th>
                     <th>No Coa</th>
                     <th>No Sub Coa 1</th>
                     <th>No Sub Coa 2</th>
@@ -86,9 +84,10 @@
                             <td><?= $realisasii['BAGIAN']; ?></td>
                             <td><?= $realisasii['NAMA_REALISASI']; ?></td>
                             <td>Rp. <?= number_format($realisasii['SALDO_AWAL'],0,',','.'); ?></td>
+                            <td>Rp. <?= number_format($realisasii['TOTAL_SALDO'],0,',','.'); ?></td>
+
                             <td>Rp. <?= number_format($realisasii['BIAYA_REALISASI'],0,',','.'); ?></td>
                             <td>Rp. <?= number_format($realisasii['SISA_SALDO'],0,',','.'); ?></td>
-                            <td>Rp. <?= number_format($realisasii['TOTAL_SALDO'],0,',','.'); ?></td>
                             <td><?= $realisasii['NO_COA']; ?></td>
                             <td><?= $realisasii['NO_SUB_COA_1']; ?></td>
                             <td><?= $realisasii['NO_SUB_COA_2']; ?></td>

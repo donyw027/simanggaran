@@ -22,14 +22,32 @@ class Realisasianggaran extends CI_Controller
         
      
         $data['title'] = "Realisasi Anggaran";
-        if (is_admin() == true) {
-            $data['realisasi'] = $this->admin->get("realisasi_keuangan");
+        if (is_admin() == true | is_yayasan() == true) {
+            $role='yayasan';
+            $keyword = $this->input->get('BAGIAN');
+            if ($keyword) {
+                $role = $keyword;
+            }
+            $data['realisasi'] = $this->admin->get("realisasi_$role");
         }else{
             $data['realisasi'] = $this->admin->get("realisasi_".$role);
         }
 
        
         $this->template->load('templates/dashboard', 'realisasianggaran/data', $data);
+    }
+
+    function getsaldo() {
+        $role = $this->session->userdata('login_session')['role'];
+
+        $saldo= $this->db->get_where('input_saldo_'.$role, ['INDUK_COA'=>$_GET['NO_COA']])->row_array();
+        // var_dump($saldo);die();
+
+    $data_saldo = array('NAMA_PERKIRAAN'      =>  $saldo['NAMA_PERKIRAAN'],
+                        'TOTAL_SALDO'      => $saldo['TOTAL_SALDO'],
+                        'SALDO_AWAL'     =>  $saldo['SALDO_AWAL']);
+    echo json_encode($data_saldo);
+
     }
 
     private function _validasi($mode)
@@ -55,6 +73,8 @@ class Realisasianggaran extends CI_Controller
     public function add()
     {
         $this->_validasi('add');
+        $yang_login = $this->session->userdata('login_session')['nama'];
+
         $role = $this->session->userdata('login_session')['role'];
 
 
@@ -66,21 +86,33 @@ class Realisasianggaran extends CI_Controller
             $this->template->load('templates/dashboard', 'realisasianggaran/add', $data);
         } else {
             $input = $this->input->post(null, true);
+            $total = $this->input->post('TOTAL_SALDO');
+            $biaya = $this->input->post('BIAYA_REALISASI');
+            $INDUK_COA = $this->input->post('NO_COA');
+
+            
+            $sisa_saldo = $total-$biaya;
+                        // var_dump($sisa_saldo);die();
+
             $input_data = [
+                'inputby'   => $yang_login,
                 'NAMA_PERKIRAAN'          => $input['NAMA_PERKIRAAN'],
                 'BAGIAN'          => $input['BAGIAN'],
                 'NAMA_REALISASI'          => $input['NAMA_REALISASI'],
                 'SALDO_AWAL'      => $input['SALDO_AWAL'],
                 'BIAYA_REALISASI'         => $input['BIAYA_REALISASI'],
-                'SISA_SALDO'         => $input['SISA_SALDO'],
+                'SISA_SALDO'         => $sisa_saldo,
                 'TOTAL_SALDO'       => $input['TOTAL_SALDO'],
                 'NO_COA'      => $input['NO_COA'],
                 'NO_SUB_COA_1'         => $input['NO_SUB_COA_1'],
                 'NO_SUB_COA_2'       => $input['NO_SUB_COA_2'],
                 'TGL_INPUT'       => $input['TGL_INPUT']
             ];
+            // var_dump($input_data);die();
 
             if ($this->admin->insert("realisasi_".$role , $input_data)) {
+            $this->admin->update('input_saldo_'.$role , 'INDUK_COA' , $INDUK_COA ,['TOTAL_SALDO'=>$sisa_saldo] );       
+
                 set_pesan('data berhasil disimpan.');
                 redirect('realisasianggaran');
             } else {
