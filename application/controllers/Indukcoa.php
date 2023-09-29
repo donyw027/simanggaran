@@ -37,6 +37,9 @@ class Indukcoa extends CI_Controller
 
         if (is_admin()==true) {
             $data['indukcoa'] = $this->admin->get('coa');
+            $data['sub_coa_1'] = $this->admin->get('sub_coa_1');
+            $data['sub_coa_2'] = $this->admin->get('sub_coa_2');
+
         }else {
         $data['indukcoa'] = $this->admin->get('coa',null, ['BAGIAN'=>$role]);
         $data['sub_coa_1'] = $this->admin->get('sub_coa_1',null, ['BAGIAN'=>$role]);

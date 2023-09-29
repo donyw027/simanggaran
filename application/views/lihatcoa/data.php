@@ -17,6 +17,9 @@
                     
                     <th>Induk Coa</th>
                     <th>Nama Perkiraan</th>
+                    <?php if (is_admin()==true) { ?>
+                    <th>Bagian</th>
+                    <?php } ?>
                     
                 </tr>
             </thead>
@@ -31,12 +34,16 @@
                            
                             <td><?= $indukcoaa['INDUK_COA']; ?></td>
                             <td><?= $indukcoaa['NAMA_PERKIRAAN']; ?></td>
+                            <?php if (is_admin()==true) { ?>
+                                <td><?= $indukcoaa['BAGIAN']; ?></td>
+
+                            <?php } ?>
                             
                         </tr>
                     <?php endforeach;
                     else : ?>
                     <tr>
-                        <td colspan="3" class="text-center">Silahkan tambahkan Coa baru</td>
+                        <td colspan="2" class="text-center">Silahkan tambahkan Coa baru</td>
                     </tr>
                 <?php endif; ?> 
             </tbody>
@@ -64,6 +71,9 @@
                     <th>Induk Coa</th>
                     <th>Sub Coa 1</th>
                     <th>Nama Perkiraan</th>
+                    <?php if (is_admin()==true) { ?>
+                    <th>Bagian</th>
+                    <?php } ?>
                     
                 </tr>
             </thead>
@@ -80,12 +90,16 @@
                             <td><?= $sub_coaa1['NO_SUB_COA_1']; ?></td>
 
                             <td><?= $sub_coaa1['NAMA_PERKIRAAN']; ?></td>
+                            <?php if (is_admin()==true) { ?>
+                                <td><?= $sub_coaa1['BAGIAN']; ?></td>
+
+                            <?php } ?>
                             
                         </tr>
                     <?php endforeach;
                     else : ?>
                     <tr>
-                        <td colspan="3" class="text-center">Silahkan tambahkan Coa baru</td>
+                        <td colspan="3" class="text-center">Silahkan tambahkan Sub Coa 1 baru</td>
                     </tr>
                 <?php endif; ?> 
             </tbody>
@@ -115,6 +129,9 @@
                     <th>No Sub Coa 2</th>
 
                     <th>Nama Perkiraan</th>
+                    <?php if (is_admin()==true) { ?>
+                    <th>Bagian</th>
+                    <?php } ?>
                     
                 </tr>
             </thead>
@@ -132,12 +149,16 @@
                             <td><?= $sub_coaa_2['NO_SUB_COA_2']; ?></td>
 
                             <td><?= $sub_coaa_2['NAMA_PERKIRAAN']; ?></td>
+                            <?php if (is_admin()==true) { ?>
+                                <td><?= $sub_coaa_2['BAGIAN']; ?></td>
+
+                            <?php } ?>
                             
                         </tr>
                     <?php endforeach;
                     else : ?>
                     <tr>
-                        <td colspan="3" class="text-center">Silahkan tambahkan Coa baru</td>
+                        <td colspan="4" class="text-center">Silahkan tambahkan Sub Coa 2 baru</td>
                     </tr>
                 <?php endif; ?> 
             </tbody>

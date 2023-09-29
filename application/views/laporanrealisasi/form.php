@@ -34,10 +34,10 @@
                     </div>
                 </div>
                 <div class="row form-group">
-                    <label class="col-lg-3 text-lg-right" for="tanggal">Tanggal</label>
+                    <label class="col-lg-3 text-lg-right" for="tanggal">Periode</label>
                     <div class="col-lg-5">
                         <div class="input-group">
-                            <input value="<?= set_value('tanggal'); ?>" name="tanggal" id="tanggal" type="text" class="form-control" placeholder="Periode Tanggal">
+                            <input value="<?= set_value('tanggal'); ?>" name="tanggal" id="tanggal" type="text" class="form-control" placeholder="Periode">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                             </div>

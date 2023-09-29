@@ -75,12 +75,7 @@
             </div>
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link pb-0" href="<?= base_url('inputsaldo'); ?>">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Input Saldo</span>
-                </a>
-            </li>
+            
             <li class="nav-item">
                 <a class="nav-link pb-0" href="<?= base_url('indukcoa/lihatcoa'); ?>">
                     <i class="fas fa-fw fa-folder"></i>
@@ -97,7 +92,7 @@
                 </a>
                 <div id="collapseMaster" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-light py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Master Barang:</h6>
+                        <h6 class="collapse-header">Master Coa</h6>
                         <a class="collapse-item" href="<?= base_url('indukcoa'); ?>">Induk Coa</a>
                         <a class="collapse-item" href="<?= base_url('subcoa1'); ?>">Sub Coa 1</a>
                         <a class="collapse-item" href="<?= base_url('subcoa2'); ?>">Sub Coa 2</a>
@@ -115,11 +110,18 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
+                <a class="nav-link pb-0" href="<?= base_url('inputsaldo'); ?>">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Input Saldo</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link pb-0" href="<?= base_url('realisasianggaran'); ?>">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Realisasi Anggaran</span>
                 </a>
-            </li><br>
+            </li>
+            <br>
             <!-- <li class="nav-item">
                 <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseMaster1" aria-expanded="true" aria-controls="collapseMaster">
                     <i class="fas fa-fw fa-folder"></i>
@@ -369,7 +371,7 @@
 
         $(document).ready(function() {
             var table = $('#dataTable').DataTable({
-                buttons: ['copy', 'csv', 'print', 'excel', 'pdf'],
+                buttons: ['copy', 'print', 'excel', 'pdf'],
                 dom: "<'row px-2 px-md-4 pt-2'<'col-md-3'l><'col-md-5 text-center'B><'col-md-4'f>>" +
                     "<'row'<'col-md-12'tr>>" +
                     "<'row px-2 px-md-4 py-3'<'col-md-5'i><'col-md-7'p>>",
@@ -415,6 +417,25 @@
                 lengthMenu: [
                     [25, 50, 100, -1],
                     [25, 50, 100, "All"]
+                ],
+                columnDefs: [{
+                    targets: -1,
+                    orderable: false,
+                    searchable: false
+                }]
+            });
+
+            table.buttons().container().appendTo('#dataTable_wrapper .col-md-5:eq(0)');
+        });
+
+        $(document).ready(function() {
+            var table = $('#dataTable4').DataTable({
+                buttons: [],
+                dom: "<'row px-2 px-md-4 pt-2'<'col-md-3'l><'col-md-5 text-center'B><'col-md-4'f>>" +
+                    "<'row'<'col-md-11'tr>>" ,
+                lengthMenu: [
+                    [5, 25, 50, 100, -1],
+                    [5, 25, 50, 100, "All"]
                 ],
                 columnDefs: [{
                     targets: -1,
