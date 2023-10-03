@@ -18,7 +18,6 @@ class Laporanrealisasi extends CI_Controller
             $data['title'] = " Reporting Hasil Realisasi";
             $this->template->load('templates/dashboard', 'laporanrealisasi/form', $data);
         } 
-
         $BAGIAN = $this->input->post('BAGIAN');
         $tanggal = $this->input->post('tanggal');
         $pecah = explode(' - ', $tanggal);
@@ -29,26 +28,34 @@ class Laporanrealisasi extends CI_Controller
             // var_dump($tanggal);
 
             // print_r($pecah);
-            // print_r($mulai);
-            // print_r($akhir);
+            print_r($mulai);
+            print_r($akhir);
 
-            // // die();
+            // die();
+
         
     }
 
     function print() {
+
         $BAGIAN = $this->input->post('BAGIAN');
         $tanggal = $this->input->post('tanggal');
-            $pecah = explode(' - ', $tanggal);
-            $mulai = date('Y-m-d', strtotime($pecah[0]));
-            $akhir = date('Y-m-d', strtotime(end($pecah)));
+        $pecah = explode(' - ', $tanggal);
+        $mulai = date('Y-m-d', strtotime($pecah[0]));
+        $akhir = date('Y-m-d', strtotime(end($pecah)));
 
-            print_r($BAGIAN);
-            print_r($tanggal);
+        $data['dataprint'] = $this->db->query("SELECT * FROM 'realisasi_$BAGIAN' WHERE TGL_INPUT BETWEEN '$mulai' and '$akhir'")->result();
 
-            print_r($pecah);
-            print_r($mulai);
-            print_r($akhir);
+            // var_dump($BAGIAN);
+            // var_dump($tanggal);
+
+            // print_r($pecah);
+            // print_r($mulai);
+            // print_r($akhir);
+
+            // // die();
+
+        $this->template->load('templates/dashboard', 'laporanrealisasi/formprint');
 
 
         
