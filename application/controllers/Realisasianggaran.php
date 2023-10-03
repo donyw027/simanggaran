@@ -93,7 +93,7 @@ class Realisasianggaran extends CI_Controller
             
             $sisa_saldo = $total-$biaya;
                         // var_dump($sisa_saldo);die();
-
+            $date = date('y-M-d H:m:s');
             $input_data = [
                 'inputby'   => $yang_login,
                 'NAMA_PERKIRAAN'          => $input['NAMA_PERKIRAAN'],
@@ -106,7 +106,7 @@ class Realisasianggaran extends CI_Controller
                 'NO_COA'      => $input['NO_COA'],
                 'NO_SUB_COA_1'         => $input['NO_SUB_COA_1'],
                 'NO_SUB_COA_2'       => $input['NO_SUB_COA_2'],
-                'TGL_INPUT'       => $input['TGL_INPUT']
+                'TGL_INPUT'       => date($input['TGL_INPUT'])
             ];
             // var_dump($input_data);die();
 
