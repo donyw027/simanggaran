@@ -8,8 +8,8 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <?= form_open(); ?>
-                <!-- <form method="post" action="<?= base_url() ?>laporanrealisasi/print"> -->
+                <?php //form_open(); ?>
+                <form method="post" action="<?= base_url() ?>laporanrealisasi/print">
                 <div class="row form-group">
                     <label class="col-md-3 text-md-right" for="transaksi"> Realisasi</label>
                     <div class="col-md-9">
@@ -58,8 +58,8 @@
                         </button>
                     </div>
                 </div>
-                <?= form_close(); ?>
-                    <!-- </form> -->
+                <?php //form_close(); ?>
+                    </form>
                     
             </div>
         </div>

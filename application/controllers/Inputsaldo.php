@@ -85,9 +85,9 @@ class Inputsaldo extends CI_Controller
             $db = $this->admin->get("input_saldo_".$role, ['INDUK_COA' => $this->input->post('INDUK_COA', true)]);
             $INDUK_COA = $this->input->post('INDUK_COA', true);
 
-            $uniq_INDUK_COA = $db['INDUK_COA'] == $INDUK_COA ? '' : '|is_unique[input_saldo_$role.INDUK_COA]';
+            // $uniq_INDUK_COA = $db['INDUK_COA'] == $INDUK_COA ? '' : '|is_unique[input_saldo_$role.INDUK_COA]';
 
-            $this->form_validation->set_rules('INDUK_COA', 'INDUK_COA', 'required|trim|alpha_numeric' . $uniq_INDUK_COA);
+            // $this->form_validation->set_rules('INDUK_COA', 'INDUK_COA', 'required|trim|alpha_numeric' . $uniq_INDUK_COA);
         }
     }
 
@@ -129,12 +129,13 @@ class Inputsaldo extends CI_Controller
     {
         $role = $this->session->userdata('login_session')['role'];
 
+
         $id = encode_php_tags($getId);
         $this->_validasi('edit');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = "Edit  Master Saldo";
-            $data['inputsaldo'] = $this->admin->get('input_saldo_' , ['id' => $id]);
+            $data['inputsaldo'] = $this->admin->get('input_saldo_'.$role , ['id' => $id]);
             $this->template->load('templates/dashboard', 'inputsaldo/edit', $data);
         } else {
             $input = $this->input->post(null, true);

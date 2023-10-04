@@ -8,7 +8,7 @@
                 </h4>
                 <?php if (is_admin()==true | is_yayasan() == true) { ?>
                     <br>
-                <?= $this->session->flashdata('pesan'); ?>
+                <?php //$this->session->flashdata('pesan'); ?>
                 <form method="get" action="<?= base_url() ?>inputsaldo/">
         <div class="row" style="margin-left: 20px;">
           <label>Pilih Bagian</label>
@@ -151,7 +151,7 @@
                     <th>Total Saldo</th>
                     
 
-                    <!-- <th>Aksi</th> -->
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -169,11 +169,11 @@
                             <td>Rp. <?= number_format($input_saldoo['SALDO_AWAL'],0,',','.'); ?></td>
                             <td>Rp. <?= number_format($input_saldoo['TOTAL_SALDO'],0,',','.'); ?></td>
                             
-                            <!-- <td>
+                            <td>
                                 
-                                <a href="<?= base_url('subcoa2/edit/') . $input_saldoo['id'] ?>" class="btn btn-circle btn-sm btn-warning"><i class="fa fa-fw fa-edit"></i></a>
-                                <a onclick="return confirm('Yakin ingin menghapus data?')" href="<?= base_url('subcoa2/delete/') . $input_saldoo['id'] ?>" class="btn btn-circle btn-sm btn-danger"><i class="fa fa-fw fa-trash"></i></a>
-                            </td> -->
+                                <a href="<?= base_url('inputsaldo/edit/') . $input_saldoo['id'] ?>" class="btn btn-circle btn-sm btn-warning"><i class="fa fa-fw fa-edit"></i></a>
+                                <a onclick="return confirm('Yakin ingin menghapus data?')" href="<?= base_url('inputsaldo/delete/') . $input_saldoo['id'] ?>" class="btn btn-circle btn-sm btn-danger"><i class="fa fa-fw fa-trash"></i></a>
+                            </td>
                         </tr>
                     <?php endforeach;
                     else : ?>

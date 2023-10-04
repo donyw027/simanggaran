@@ -80,7 +80,7 @@ class Realisasianggaran extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['title'] = "Tambah Realisasi Anggaran";
-            $data['coa'] = $this->admin->getcoa();
+            $data['coa'] = $this->admin->getcoauntukrealisasi();
             $data['subcoa1'] = $this->admin->getsubcoa1();
             $data['subcoa2'] = $this->admin->getsubcoa2();
             $this->template->load('templates/dashboard', 'realisasianggaran/add', $data);

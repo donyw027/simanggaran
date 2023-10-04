@@ -25,13 +25,13 @@ class Laporanrealisasi extends CI_Controller
         $akhir = date('Y-m-d', strtotime(end($pecah)));
 
             // var_dump($BAGIAN);
-            // var_dump($tanggal);
+            // // var_dump($tanggal);
 
-            // print_r($pecah);
-            print_r($mulai);
-            print_r($akhir);
+            // // print_r($pecah);
+            // print_r($mulai);
+            // print_r($akhir);
 
-            // die();
+            // // die();
 
         
     }

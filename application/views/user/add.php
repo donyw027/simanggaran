@@ -99,6 +99,10 @@
                             <label class="custom-control-label" for="sekretariat">Sekretariat</label>
                         </div>
                         <div class="custom-control custom-radio">
+                            <input <?= set_radio('role', 'akunting'); ?> value="akunting" type="radio" id="akunting" name="role" class="custom-control-input">
+                            <label class="custom-control-label" for="akunting">Akunting</label>
+                        </div>
+                        <div class="custom-control custom-radio">
                             <input <?= set_radio('role', 'yayasan'); ?> value="yayasan" type="radio" id="yayasan" name="role" class="custom-control-input">
                             <label class="custom-control-label" for="yayasan">Yayasan</label>
                         </div>

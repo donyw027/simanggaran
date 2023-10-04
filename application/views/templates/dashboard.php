@@ -143,12 +143,12 @@
             </div>
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link pb-0" href="<?= base_url('laporaninput'); ?>">
                     <i class="fas fa-fw fa-print"></i>
                     <span>Hasil Input Saldo</span>
                 </a>
-            </li>
+            </li> -->
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">

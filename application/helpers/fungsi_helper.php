@@ -107,6 +107,20 @@ function is_sekretariat()
     return $status;
 }
 
+function is_akunting()
+{
+    $ci = get_instance();
+    $role = $ci->session->userdata('login_session')['role'];
+
+    $status = true;
+
+    if ($role != 'akunting') {
+        $status = false;
+    }
+
+    return $status;
+}
+
 function is_yayasan()
 {
     $ci = get_instance();

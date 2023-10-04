@@ -74,8 +74,8 @@
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="TGL_INPUT">TGL_INPUT</label>
                     <div class="col-md-6">
-                        <?php $date = date('d-M-y | h:m'); ?>
-                        <input value="<?= $date; ?>" type="text" id="TGL_INPUT" name="TGL_INPUT" class="form-control" placeholder="TGL_INPUT">
+                        <?php $date = date('d-M-y'); ?>
+                        <input value="<?= $date; ?>" type="text" id="TGL_INPUT" name="TGL_INPUT" class="form-control" placeholder="TGL_INPUT" readonly>
                         <?= form_error('TGL_INPUT', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>

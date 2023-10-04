@@ -8,7 +8,7 @@
                 </h4>
                 <?php if (is_admin()==true | is_yayasan()==true) { ?>
                     <br>
-                <?= $this->session->flashdata('pesan'); ?>
+                <?php //$this->session->flashdata('pesan'); ?>
                 <form method="get" action="<?= base_url() ?>realisasianggaran/">
         <div class="row" style="margin-left: 20px;">
           <label>Pilih Bagian</label>
@@ -68,7 +68,7 @@
                     <th>No Coa</th>
                     <th>No Sub Coa 1</th>
                     <th>No Sub Coa 2</th>
-                    <!-- <th>Aksi</th> -->
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -78,8 +78,9 @@
                     foreach ($realisasi as $realisasii) :
                         ?>
                         <tr>
+                        
                             <td><?= $no++; ?></td>
-                            <td><?= $realisasii['TGL_INPUT']; ?></td>
+                            <td><?= date('d-m-Y', strtotime($realisasii['TGL_INPUT'])); ?></td>
                             <td><?= $realisasii['NAMA_PERKIRAAN']; ?></td>
                             <td><?= $realisasii['BAGIAN']; ?></td>
                             <td><?= $realisasii['NAMA_REALISASI']; ?></td>
@@ -91,15 +92,16 @@
                             <td><?= $realisasii['NO_COA']; ?></td>
                             <td><?= $realisasii['NO_SUB_COA_1']; ?></td>
                             <td><?= $realisasii['NO_SUB_COA_2']; ?></td>
+                            <td>
+                            <a onclick="return confirm('Yakin ingin menghapus data?')" href="<?= base_url('realisasianggaran/delete/') . $realisasii['id'] ?>" class="btn btn-circle btn-sm btn-danger"><i class="fa fa-fw fa-trash"></i></a>
+                            </td>
                            
-                             <!-- </td>
-                                 <a onclick="return confirm('Yakin ingin menghapus data?')" href="<?= base_url('realisasianggaran/delete/') . $realisasii['id'] ?>" class="btn btn-circle btn-sm btn-danger"><i class="fa fa-fw fa-trash"></i></a>
-                            </td>   -->
+                            
                         </tr>
                     <?php endforeach;
                     else : ?>
                     <tr>
-                        <td colspan="8" class="text-center">Silahkan tambahkan Realisasi Baru</td>
+                        <td colspan="13" class="text-center">Silahkan tambahkan Realisasi Baru</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

@@ -128,7 +128,7 @@
                     <div class="col-md-6">
                         <?php date_default_timezone_set("Asia/Jakarta"); ?>
                         <?php $date = date('Y-m-d'); ?>
-                        <input value="<?= $date; ?>" type="text" id="TGL_INPUT" name="TGL_INPUT" class="form-control" placeholder="TGL_INPUT">
+                        <input value="<?= $date; ?>" type="text" id="TGL_INPUT" name="TGL_INPUT" class="form-control" placeholder="TGL_INPUT" readonly>
                         <?= form_error('TGL_INPUT', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>

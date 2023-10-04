@@ -4,7 +4,8 @@
 	<title>
 		Yayasan Diannanda
 	</title>
-  <!-- <link rel="icon" href="<?= base_url('assets/logo2.jpg') ?>">  -->
+  <link rel="icon" href="<?= base_url('assets/img/xto.ico'); ?>">
+
 
 
 	<style media="print">

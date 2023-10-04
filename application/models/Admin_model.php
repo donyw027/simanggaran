@@ -66,6 +66,18 @@ class Admin_model extends CI_Model
         
 	}
 
+    public function getcoauntukrealisasi()
+	{   
+        $role = $this->session->userdata('login_session')['role'];
+
+		if (Is_admin() == true) {
+            return $this->db->get('coa')->result();
+        }else {
+            return $this->db->query("SELECT * FROM input_saldo_$role")->result();
+        }
+        
+	}
+
     public function get_keyword($keyword="sarpras")
     {
          $this->db->select('*');
