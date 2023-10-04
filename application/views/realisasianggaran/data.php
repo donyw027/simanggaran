@@ -14,10 +14,12 @@
           <label>Pilih Bagian</label>
           <div class="col-3">
           <select name="BAGIAN" id="" class="form-control">
+                        <option value="yayasan">Pilih</option>
                             <option value="keuangan">Keuangan</option>
                             <option value="marketing">Marketing</option>
                             <option value="pendidikan">Pendidikan</option>
                             <option value="sarpras">Sarpras</option>
+                            <option value="akunting">Akunting</option>
                             <option value="sdm">SDM</option>
                             <option value="sekretariat">Sekretariat</option>
                             <option value="yayasan">Yayasan</option>

@@ -38,13 +38,17 @@ class Laporanrealisasi extends CI_Controller
 
     function print() {
 
+        $data['title'] = " Reporting Hasil Realisasi";
         $BAGIAN = $this->input->post('BAGIAN');
-        $tanggal = $this->input->post('tanggal');
-        $pecah = explode(' - ', $tanggal);
-        $mulai = date('Y-m-d', strtotime($pecah[0]));
-        $akhir = date('Y-m-d', strtotime(end($pecah)));
+        //$tanggal = $this->input->post('tanggal');
+        $t_mulai = $this->input->post('t_mulai');
+        $t_akhir = $this->input->post('t_akhir');
 
-        $data['dataprint'] = $this->db->query("SELECT * FROM 'realisasi_$BAGIAN' WHERE TGL_INPUT BETWEEN '$mulai' and '$akhir'")->result();
+        // $pecah = explode(' - ', $tanggal);
+        // $mulai = date('Y-m-d', strtotime($pecah[0]));
+        // $akhir = date('Y-m-d', strtotime(end($pecah)));
+
+        $data['dataprint'] = $this->db->query("SELECT * FROM realisasi_$BAGIAN WHERE TGL_INPUT BETWEEN '$t_mulai' and '$t_akhir'")->result();
 
             // var_dump($BAGIAN);
             // var_dump($tanggal);
@@ -52,10 +56,11 @@ class Laporanrealisasi extends CI_Controller
             // print_r($pecah);
             // print_r($mulai);
             // print_r($akhir);
+            // print_r($data['dataprint']);
 
-            // // die();
+            // die();
 
-        $this->template->load('templates/dashboard', 'laporanrealisasi/formprint');
+        $this->template->load('templates/dashboard', 'laporanrealisasi/formprint' , $data);
 
 
         

@@ -45,18 +45,18 @@
                         ?>
                         <tr>
                             <td><?= $no++; ?></td>
-                            <td><?= $dataprintt['TGL_INPUT']; ?></td>
-                            <td><?= $dataprintt['NAMA_PERKIRAAN']; ?></td>
-                            <td><?= $dataprintt['BAGIAN']; ?></td>
-                            <td><?= $dataprintt['NAMA_REALISASI']; ?></td>
-                            <td>Rp. <?= number_format($dataprintt['SALDO_AWAL'],0,',','.'); ?></td>
-                            <td>Rp. <?= number_format($dataprintt['TOTAL_SALDO'],0,',','.'); ?></td>
+                            <td><?= $dataprintt->TGL_INPUT ?></td>
+                            <td><?= $dataprintt->NAMA_PERKIRAAN ?></td>
+                            <td><?= $dataprintt->BAGIAN ?></td>
+                            <td><?= $dataprintt->NAMA_REALISASI ?></td>
+                            <td>Rp. <?= number_format($dataprintt->SALDO_AWAL,0,',','.'); ?></td>
+                            <td>Rp. <?= number_format($dataprintt->TOTAL_SALDO,0,',','.'); ?></td>
 
-                            <td>Rp. <?= number_format($dataprintt['BIAYA_REALISASI'],0,',','.'); ?></td>
-                            <td>Rp. <?= number_format($dataprintt['SISA_SALDO'],0,',','.'); ?></td>
-                            <td><?= $dataprintt['NO_COA']; ?></td>
-                            <td><?= $dataprintt['NO_SUB_COA_1']; ?></td>
-                            <td><?= $dataprintt['NO_SUB_COA_2']; ?></td>
+                            <td>Rp. <?= number_format($dataprintt->BIAYA_REALISASI,0,',','.'); ?></td>
+                            <td>Rp. <?= number_format($dataprintt->SISA_SALDO,0,',','.'); ?></td>
+                            <td><?= $dataprintt->NO_COA ?></td>
+                            <td><?= $dataprintt->NO_SUB_COA_1 ?></td>
+                            <td><?= $dataprintt->NO_SUB_COA_2 ?></td>
                            
                              
                         </tr>
