@@ -70,7 +70,10 @@
                     <th>No Coa</th>
                     <th>No Sub Coa 1</th>
                     <th>No Sub Coa 2</th>
+                    <?php if (!is_admin()==true) { ?>
                     <th>Aksi</th>
+                                
+                    <?php } ?>  
                 </tr>
             </thead>
             <tbody>
@@ -94,9 +97,12 @@
                             <td><?= $realisasii['NO_COA']; ?></td>
                             <td><?= $realisasii['NO_SUB_COA_1']; ?></td>
                             <td><?= $realisasii['NO_SUB_COA_2']; ?></td>
-                            <td>
+                            <?php if (!is_admin()==true) { ?>
+                                <td>
                             <a onclick="return confirm('Yakin ingin menghapus data?')" href="<?= base_url('realisasianggaran/delete/') . $realisasii['id'] ?>" class="btn btn-circle btn-sm btn-danger"><i class="fa fa-fw fa-trash"></i></a>
                             </td>
+                            <?php } ?>
+                            
                            
                             
                         </tr>

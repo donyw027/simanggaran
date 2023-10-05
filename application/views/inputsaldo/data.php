@@ -152,9 +152,11 @@
                     <th>Bagian</th>
                     <th>Saldo Awal</th>
                     <th>Total Saldo</th>
-                    
+                    <?php if (!is_admin()==true) { ?>
+                        <th>Aksi</th>     
+                    <?php } ?>                    
 
-                    <th>Aksi</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -171,12 +173,13 @@
                             <td><?= $input_saldoo['BAGIAN']; ?></td>
                             <td>Rp. <?= number_format($input_saldoo['SALDO_AWAL'],0,',','.'); ?></td>
                             <td>Rp. <?= number_format($input_saldoo['TOTAL_SALDO'],0,',','.'); ?></td>
-                            
-                            <td>
-                                
+                            <?php if (!is_admin()==true) { ?>
+                                <td>    
                                 <a href="<?= base_url('inputsaldo/edit/') . $input_saldoo['id'] ?>" class="btn btn-circle btn-sm btn-warning"><i class="fa fa-fw fa-edit"></i></a>
                                 <a onclick="return confirm('Yakin ingin menghapus data?')" href="<?= base_url('inputsaldo/delete/') . $input_saldoo['id'] ?>" class="btn btn-circle btn-sm btn-danger"><i class="fa fa-fw fa-trash"></i></a>
                             </td>
+                            <?php } ?>
+                            
                         </tr>
                     <?php endforeach;
                     else : ?>

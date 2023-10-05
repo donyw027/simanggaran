@@ -83,10 +83,9 @@ var dt = new Date();
 document.getElementById("tanggawaktu").innerHTML = dt.toLocaleTimeString();
 </script>
 
-	</center>
 
-
+<!-- 
 	<script type="text/javascript">
 		window.print();
         
-	</script>
+	</script> -->
