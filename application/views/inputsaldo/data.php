@@ -167,7 +167,7 @@
                         ?>
                         <tr>
                             <td><?= $no++; ?></td>
-                            <td><?= $input_saldoo['TGL_INPUT']; ?></td>
+                            <td><?= date('d-m-Y', strtotime($input_saldoo['TGL_INPUT'])); ?></td>
                             <td><?= $input_saldoo['INDUK_COA']; ?></td>
                             <td><?= $input_saldoo['NAMA_PERKIRAAN']; ?></td>
                             <td><?= $input_saldoo['BAGIAN']; ?></td>

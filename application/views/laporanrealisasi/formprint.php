@@ -45,7 +45,7 @@
                         ?>
                         <tr>
                             <td><?= $no++; ?></td>
-                            <td><?= $dataprintt->TGL_INPUT ?></td>
+                            <td><?= date('d-m-Y', strtotime($dataprintt->TGL_INPUT)); ?></td>
                             <td><?= $dataprintt->NAMA_PERKIRAAN ?></td>
                             <td><?= $dataprintt->BAGIAN ?></td>
                             <td><?= $dataprintt->NAMA_REALISASI ?></td>
