@@ -55,7 +55,7 @@
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="BAGIAN">BAGIAN</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('BAGIAN', $subcoa1['BAGIAN']); ?>" type="text" id="BAGIAN" name="BAGIAN" class="form-control" placeholder="BAGIAN">
+                        <input value="<?= set_value('BAGIAN', $subcoa1['BAGIAN']); ?>" type="text" id="BAGIAN" name="BAGIAN" class="form-control" placeholder="BAGIAN" readonly>
                         <?= form_error('BAGIAN', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
