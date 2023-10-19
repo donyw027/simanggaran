@@ -41,7 +41,7 @@
   
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span style="color:white;">Copyright &copy; Sistem Informasi Anggaran &bull; by IT Yayasan Diannanda 2023</span>
+                        <span style="color:white;font-size:12px;">Copyright &copy; Sistem Informasi Anggaran | IT Yayasan Diannanda 2023</span>
                     </div>
                 </div>
            

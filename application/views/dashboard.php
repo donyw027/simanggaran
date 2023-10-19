@@ -122,7 +122,7 @@
                     <?php endforeach;
                     else : ?>
                     <tr>
-                        <td colspan="8" class="text-center">Silahkan tambahkan Coa baru</td>
+                        <td colspan="8" class="text-center">Silahkan tambahkan Master Saldo baru</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
@@ -133,10 +133,9 @@
                 </div>
                 
                 
-            </div>
+            <!-- </div>
         </div>
     </div>
 
-</div>   <!-- Pie Chart -->
-
+</div>   -->
  
