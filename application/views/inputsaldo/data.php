@@ -76,6 +76,12 @@
                           <?php } ?>
                         </select>
                     </div>
+                    <br><br>
+                    <label class="col-md-4 text-md-right" for="BAGIAN">Bagian</label>
+                    <div class="col-md-6">
+                    <input value="<?= set_value('BAGIAN'); ?>" type="text" id="BAGIAN" name="BAGIAN" class="form-control" placeholder="Masukan Bagian">
+                        <?= form_error('BAGIAN', '<span class="text-danger small">', '</span>'); ?>
+                    </div>
 
                     <!-- <div id="txtHint">Customer info will be listed here...</div> -->
                     <br> <br> 
@@ -90,6 +96,13 @@
                     <input value="<?= set_value('TOTAL_SALDO'); ?>" type="text" id="TOTAL_SALDO" name="TOTAL_SALDO" class="form-control" placeholder="Total Saldo" readonly>
                         <?= form_error('TOTAL_SALDO', '<span class="text-danger small">', '</span>'); ?>
                     </div>
+                    <br><br>
+                    <label class="col-md-4 text-md-right" for="KETERANGAN">Keterangan</label>
+                    <div class="col-md-6">
+                        <textarea value="<?= set_value('KETERANGAN'); ?>"  id="KETERANGAN" name="KETERANGAN" class="form-control" placeholder="Masukan Keterangan"></textarea>
+                    <!-- <input value="<?= set_value('KETERANGAN'); ?>" type="text" id="KETERANGAN" name="KETERANGAN" class="form-control" placeholder="Masukan KETERANGAN"> -->
+                        <?= form_error('KETERANGAN', '<span class="text-danger small">', '</span>'); ?>
+                    </div><br>
                                <br> <br> 
                     <label class="col-md-4 text-md-right" for="JUMLAH_TAMBAH">Jumlah Tambah Saldo</label>
                     <div class="col-md-6">
@@ -102,7 +115,7 @@
                     <div class="col-md-6">
 <?php date_default_timezone_set("Asia/Jakarta"); ?>
 
-                    <?php $date = date('d-M-y | h:m'); ?>
+                    <?php $date = date('d-M-y'); ?>
                         <input value="<?= $date; ?>" type="text" id="TGL_INPUT" name="TGL_INPUT" class="form-control" placeholder="TGL_INPUT" readonly>
                         <?= form_error('TGL_INPUT', '<span class="text-danger small">', '</span>'); ?>
                     </div>

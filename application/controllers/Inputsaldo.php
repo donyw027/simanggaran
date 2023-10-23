@@ -49,6 +49,7 @@ class Inputsaldo extends CI_Controller
         $TOTAL_SALDO = $this->input->post('TOTAL_SALDO');
         // $TGL_INPUT = $this->input->post('TGL_INPUT');
         $hasil_jumlah = $TOTAL_SALDO + $JUMLAH_TAMBAH ;
+        
         $this->admin->update('input_saldo_'.$role , 'INDUK_COA' , $INDUK_COA ,['TOTAL_SALDO'=>$hasil_jumlah] );       
         echo json_encode([
             'Sukses'=>True
