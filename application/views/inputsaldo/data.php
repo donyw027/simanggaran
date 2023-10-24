@@ -76,12 +76,15 @@
                           <?php } ?>
                         </select>
                     </div>
-                    <br><br>
-                    <label class="col-md-4 text-md-right" for="BAGIAN">Bagian</label>
-                    <div class="col-md-6">
-                    <input value="<?= set_value('BAGIAN'); ?>" type="text" id="BAGIAN" name="BAGIAN" class="form-control" placeholder="Masukan Bagian">
+                    <!-- <br><br> -->
+                    <!-- <label class="col-md-4 text-md-right" for="BAGIAN">Bagian</label> -->
+                    <!-- <div class="col-md-6"> -->
+                        <?php  
+                        $role = $this->session->userdata('login_session')['role'];
+                        ?>
+                    <input value="<?= $role; ?>" type="text" id="BAGIAN" name="BAGIAN" class="form-control" placeholder="Masukan Bagian" hidden>
                         <?= form_error('BAGIAN', '<span class="text-danger small">', '</span>'); ?>
-                    </div>
+                    <!-- </div> -->
 
                     <!-- <div id="txtHint">Customer info will be listed here...</div> -->
                     <br> <br> 
@@ -115,7 +118,7 @@
                     <div class="col-md-6">
 <?php date_default_timezone_set("Asia/Jakarta"); ?>
 
-                    <?php $date = date('d-M-y'); ?>
+                    <?php $date = date('Y-m-d'); ?>
                         <input value="<?= $date; ?>" type="text" id="TGL_INPUT" name="TGL_INPUT" class="form-control" placeholder="TGL_INPUT" readonly>
                         <?= form_error('TGL_INPUT', '<span class="text-danger small">', '</span>'); ?>
                     </div>
@@ -228,11 +231,17 @@
 
     function tambahsaldo(){
         var INDUK_COA = $("#INDUK_COA").val();
+
+        var BAGIAN = $("#BAGIAN").val();
+        var KETERANGAN = $("#KETERANGAN").val();
+        var TGL_INPUT = $("#TGL_INPUT").val();
+
+
         var TOTAL_SALDO = $("#TOTAL_SALDO").val();
         var JUMLAH_TAMBAH = $("#JUMLAH_TAMBAH").val();
 
 
-        $.post("inputsaldo/tambahsaldo", {INDUK_COA: INDUK_COA , TOTAL_SALDO : TOTAL_SALDO , JUMLAH_TAMBAH : JUMLAH_TAMBAH , csrf_test_name : csrf_hash} , function(data){
+        $.post("inputsaldo/tambahsaldo", {INDUK_COA: INDUK_COA , BAGIAN: BAGIAN , KETERANGAN: KETERANGAN , TGL_INPUT: TGL_INPUT , TOTAL_SALDO : TOTAL_SALDO , JUMLAH_TAMBAH : JUMLAH_TAMBAH , csrf_test_name : csrf_hash} , function(data){
             var json = data,
             obj = JSON.parse(json);
             

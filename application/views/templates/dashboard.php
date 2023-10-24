@@ -122,41 +122,26 @@
                 </a>
             </li>
             <br>
-            <!-- <li class="nav-item">
-                <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseMaster1" aria-expanded="true" aria-controls="collapseMaster">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Tambah Anggaran</span>
-                </a>
-                <div id="collapseMaster1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-light py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tambah Anggaran:</h6>
-                        <a class="collapse-item" href="<?= base_url('satuan'); ?>">Anggaran 1</a>
-                        <a class="collapse-item" href="<?= base_url('jenis'); ?>">Anggaran 2</a>
-                    </div>
-                </div>
-            </li> -->
-
-            <!-- Divider -->
+            
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
                 Reporting
             </div>
 
-            <!-- Nav Item - Dashboard -->
-            <!-- <li class="nav-item">
-                <a class="nav-link pb-0" href="<?= base_url('laporaninput'); ?>">
-                    <i class="fas fa-fw fa-print"></i>
-                    <span>Hasil Input Saldo</span>
-                </a>
-            </li> -->
-
-            <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('laporanrealisasi'); ?>">
+                <a class="nav-link pb-0" href="<?= base_url('riwayattambah'); ?>">
+                    <i class="fas fa-fw fa-print"></i>
+                    <span>Riwayat Tambah Saldo</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link pb-0" href="<?= base_url('laporanrealisasi'); ?>">
                     <i class="fas fa-fw fa-print"></i>
                     <span>Hasil Realisasi</span>
                 </a>
-            </li>
+            </li><br>
+           
+           
 
             <?php if (is_admin()) : ?>
             

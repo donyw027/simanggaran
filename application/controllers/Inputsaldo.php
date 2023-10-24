@@ -22,7 +22,9 @@ class Inputsaldo extends CI_Controller
            
      
         $data['title'] = "Input Saldo";
-        $data['coa'] = $this->admin->getcoa();
+        // $data['coa'] = $this->admin->getcoa();
+        $data['coa'] = $this->admin->getcoauntukrealisasi();
+
         if (is_admin() == true | is_yayasan() == true) {
             $role='yayasan';
             $keyword = $this->input->get('BAGIAN');
@@ -42,14 +44,26 @@ class Inputsaldo extends CI_Controller
 
     function tambahsaldo() {
         $role = $this->session->userdata('login_session')['role'];
+        $inpby = $this->session->userdata('login_session')['nama'];
         // print_r($role);die();
 
+        $inputby = $inpby;
         $INDUK_COA = $this->input->post('INDUK_COA');
+        $BAGIAN = $role;
         $JUMLAH_TAMBAH = $this->input->post('JUMLAH_TAMBAH');
+        $KETERANGAN = $this->input->post('KETERANGAN');
         $TOTAL_SALDO = $this->input->post('TOTAL_SALDO');
-        // $TGL_INPUT = $this->input->post('TGL_INPUT');
+        $TGL_INPUT = $this->input->post('TGL_INPUT');
         $hasil_jumlah = $TOTAL_SALDO + $JUMLAH_TAMBAH ;
-        
+
+        $this->admin->insert("riwayat_tambah_saldo" , [
+            'inputby'          => $inputby,
+            'INDUK_COA'          => $INDUK_COA,
+            'BAGIAN'          => $BAGIAN,
+            'KETERANGAN'          => $KETERANGAN,
+            'JUMLAH_TAMBAH'      => $JUMLAH_TAMBAH,
+            'TGL_INPUT'       => $TGL_INPUT
+        ]);
         $this->admin->update('input_saldo_'.$role , 'INDUK_COA' , $INDUK_COA ,['TOTAL_SALDO'=>$hasil_jumlah] );       
         echo json_encode([
             'Sukses'=>True
